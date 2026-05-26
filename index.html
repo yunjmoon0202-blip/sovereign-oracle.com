@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!--
+  ================================================================
+  SOVEREIGN ORACLE v2.3 FINAL — sovereign-oracle-v2.3-final.html
+  고대디(GoDaddy) 단일 삽입용 완전 자립 통합 파일
+  ─ style.css  → <style> 태그 내장 완료
+  ─ app.js     → <script> 태그 내장 완료
+  ─ locale.json → const LOCALE 변수 인라인 완료
+  외부 파일 의존 없음. 복사·붙여넣기만으로 즉시 구동.
+  ================================================================
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sovereign Oracle">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sovereign Oracle — Precision Destiny Analysis">
+<meta property="og:description" content="Four Pillars · Five Elements · Classical Face & Palm Reading">
+<meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+<meta property="og:url" content="https://yourdomain.com">
+<meta name="twitter:card" content="summary_large_image">
+<title>Sovereign Oracle — Precision Destiny Analysis</title>
+
+<!-- Fonts: Cormorant Garamond (primary throughout) + Cinzel (brand monogram only) + Noto Serif KR (Korean) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Noto+Serif+KR:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SOVEREIGN ORACLE — style.css v2.3 (가독성 패치 적용)
+   Typography: Cormorant Garamond unified across all display,
+   body, and UI elements. Cinzel reserved for monogram/brand only.
+   ============================================================ */
+
+/* ── Google Fonts: loaded via index.html ── */
+
+:root {
+  /* ══ SOVEREIGN ORACLE v2.3 — 가독성 격상 컬러 시스템 ══
+     마스터 긴급 패치: 흑배경 위 최고급 가독성 기준 적용
+     ─────────────────────────────────────────────────── */
+
+  /* 샴페인 골드 스케일 — 블랙 배경 위에서 전구처럼 빛나는 단계 */
+  --gold-50:   #FFFDF5;   /* 거의 흰 크림 */
+  --gold-100:  #FFF3D6;   /* 밝은 샴페인 */
+  --gold-200:  #FFE8B0;   /* 핵심 골드 강조 — 제목·로고 */
+  --gold-300:  #F9D87A;   /* 서브 골드 강조 */
+  --gold-400:  #E8C04A;   /* 아이콘·배지 */
+  --gold-500:  #C8A030;   /* 테두리·미묘한 포인트 */
+
+  /* 배경 스케일 (기존 유지) */
+  --black-900: #0a0a0a;
+  --black-800: #111111;
+  --black-700: #1a1a1a;
+  --black-600: #222222;
+  --black-500: #2e2e2e;
+
+  /* 텍스트 스케일 — 핵심 격상 포인트
+     primary:   크림 화이트 — 본문 모든 글자, 눈 피로 없는 최적 밝기
+     secondary: 소프트 미색 — 설명문·서브 텍스트, 충분한 대비
+     muted:     그레이골드  — 힌트·레이블, 어둡지 않고 읽힘            */
+  --text-primary:   #F5F5F0;   /* 크림 화이트 (기존 #f0e8d5 → 격상) */
+  --text-secondary: #E2D9C8;   /* 밝은 미색   (기존 #b8a882 → 대폭 격상) */
+  --text-muted:     #A89880;   /* 그레이골드  (기존 #6b5f4a → 격상) */
+
+  --danger:  #FF6B6B;   /* 경고 — 더 선명하게 */
+  --success: #6FCFA0;   /* 성공 — 더 선명하게 */
+
+  /* ── Typography — Cormorant Garamond throughout ── */
+  --font-display: 'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+  --font-body:    'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+  --font-brand:   'Cinzel', 'Cormorant Garamond', serif; /* brand name only */
+  --font-mono:    'Cormorant Garamond', Georgia, serif;
+
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  {
+  font-family: var(--font-body);
+  background:  var(--black-900);
+  color:       var(--text-primary);
+  line-height: 1.85;   /* 행간 격상: 1.75 → 1.85 */
+  -webkit-font-smoothing: antialiased;
+  font-size: 17px;     /* 기본 폰트 격상: 16 → 17px */
+  letter-spacing: 0.01em; /* 기본 자간 추가 */
+}
+
+/* ============================================================
+   App Container
+   ============================================================ */
+#so-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 18% 0%,   rgba(201,168,76,.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 82% 100%, rgba(201,168,76,.05) 0%, transparent 55%),
+    var(--black-900);
+  position: relative;
+  overflow: hidden;
+}
+#so-app::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg,  transparent, transparent 72px, rgba(201,168,76,.012) 72px, rgba(201,168,76,.012) 73px),
+    repeating-linear-gradient(90deg, transparent, transparent 72px, rgba(201,168,76,.012) 72px, rgba(201,168,76,.012) 73px);
+  pointer-events: none; z-index: 0;
+}
+.app-inner {
+  position: relative; z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.oracle-header {
+  text-align: center;
+  padding: 48px 20px 28px;
+  border-bottom: 1px solid rgba(201,168,76,.12);
+  margin-bottom: 36px;
+}
+.header-emblem { width: 72px; height: 72px; margin: 0 auto 22px; position: relative; }
+.emblem-ring {
+  width: 72px; height: 72px;
+  border: 1.5px solid var(--gold-300); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: emblem-spin 24s linear infinite;
+}
+.emblem-ring::before { content: ''; position: absolute; width: 54px; height: 54px; border: 1px solid rgba(201,168,76,.3); border-radius: 50%; }
+.emblem-ring::after  { content: ''; position: absolute; width: 36px; height: 36px; border: 1px solid rgba(201,168,76,.15); border-radius: 50%; }
+@keyframes emblem-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.emblem-symbol { font-size: 24px; color: var(--gold-200); animation: emblem-spin 24s linear infinite reverse; }
+
+/* Brand — Cinzel for the monogram name, Cormorant for sub-text */
+.brand-name    { font-family: var(--font-brand); font-size: clamp(22px,5.5vw,34px); font-weight: 600; letter-spacing: .22em; color: var(--gold-200); margin-bottom: 6px; text-shadow: 0 0 32px rgba(255,232,176,.25); }
+.brand-sub     { font-family: var(--font-display); font-size: 13px; letter-spacing: .24em; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; font-weight: 400; font-style: italic; }
+.brand-classic { font-family: var(--font-display); font-size: 11px; letter-spacing: .14em; color: rgba(201,168,76,.4); font-style: italic; margin-bottom: 16px; }
+
+/* Language switcher */
+.lang-switcher { display: flex; justify-content: center; gap: 0; margin-top: 16px; }
+.lang-btn {
+  padding: 6px 20px;
+  font-family: var(--font-display);
+  font-size: 11px; letter-spacing: .18em;
+  border: 1px solid rgba(201,168,76,.25);
+  background: transparent; color: var(--text-muted);
+  cursor: pointer; transition: var(--transition); text-transform: uppercase;
+  font-style: italic;
+}
+.lang-btn:first-child { border-radius: 2px 0 0 2px; }
+.lang-btn:last-child  { border-radius: 0 2px 2px 0; border-left: none; }
+.lang-btn.active { background: rgba(201,168,76,.1); color: var(--gold-200); border-color: rgba(201,168,76,.45); }
+
+/* ============================================================
+   Step Indicator
+   ============================================================ */
+.step-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 36px; }
+.s-dot    { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.s-circle {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text-muted);
+  font-family: var(--font-display); font-style: italic;
+  transition: var(--transition);
+}
+.s-dot.active .s-circle { border-color: var(--gold-300); background: rgba(201,168,76,.08); color: var(--gold-200); box-shadow: 0 0 14px rgba(201,168,76,.18); }
+.s-dot.done   .s-circle { border-color: var(--gold-400); background: rgba(201,168,76,.12); color: var(--gold-300); }
+.s-label               { font-family: var(--font-display); font-size: 9px; letter-spacing: .14em; color: var(--text-muted); white-space: nowrap; text-transform: uppercase; font-style: italic; }
+.s-dot.active .s-label { color: var(--gold-300); }
+.s-line { width: 40px; height: 1px; background: rgba(201,168,76,.12); margin-bottom: 18px; flex-shrink: 0; }
+@media(max-width:380px) { .s-line { width: 20px; } .s-label { font-size: 8px; } }
+
+/* ============================================================
+   Form Section Cards
+   ============================================================ */
+.form-section {
+  background: rgba(255,255,255,.018);
+  border: 1px solid rgba(201,168,76,.09); border-radius: 2px;
+  padding: 26px 22px; margin-bottom: 14px;
+  position: relative; overflow: hidden;
+  transition: var(--transition);
+}
+.form-section::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--gold-300), transparent);
+  opacity: 0; transition: var(--transition);
+}
+.form-section:focus-within::before { opacity: 1; }
+.form-section:focus-within { border-color: rgba(201,168,76,.22); background: rgba(255,255,255,.025); }
+
+.layer-tag {
+  position: absolute; top: 14px; right: 16px;
+  font-family: var(--font-display); font-size: 9px; letter-spacing: .18em;
+  color: rgba(255,232,176,.45); text-transform: uppercase; font-style: italic;
+  border: 1px solid rgba(201,168,76,.12); padding: 3px 8px; border-radius: 1px;
+}
+
+.sec-header  { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.sec-num     { width: 22px; height: 22px; border: 1px solid rgba(255,232,176,.45); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--gold-300); font-family: var(--font-display); font-style: italic; flex-shrink: 0; }
+.sec-title   { font-family: var(--font-display); font-size: 15px; letter-spacing: .14em; color: var(--gold-200); text-transform: uppercase; font-style: italic; }
+.sec-classic { font-family: var(--font-display); font-size: 12px; color: var(--text-muted); letter-spacing: .08em; font-style: italic; margin-left: auto; }
+
+/* Classical hint box */
+.classic-hint { background: rgba(201,168,76,.04); border-left: 2px solid rgba(201,168,76,.25); padding: 10px 14px; margin-bottom: 16px; border-radius: 0 2px 2px 0; }
+.classic-hint-text   { font-family: var(--font-display); font-size: 14px; color: var(--text-secondary); font-style: italic; line-height: 1.9; }
+.classic-hint-source { font-family: var(--font-display); font-size: 10px; color: var(--gold-500); letter-spacing: .1em; margin-top: 4px; }
+
+/* ============================================================
+   Form Inputs
+   ============================================================ */
+.field-group            { margin-bottom: 16px; }
+.field-group:last-child { margin-bottom: 0; }
+.field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 10px; letter-spacing: .18em;
+  color: var(--text-muted); text-transform: uppercase; font-style: italic;
+  margin-bottom: 7px;
+}
+.field-input {
+  width: 100%;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(201,168,76,.13); border-radius: 2px;
+  padding: 11px 15px;
+  color: var(--text-primary);
+  font-family: var(--font-body); font-size: 17px;
+  transition: var(--transition); outline: none;
+  -webkit-appearance: none; appearance: none;
+}
+.field-input:focus       { border-color: rgba(201,168,76,.42); background: rgba(0,0,0,.6); box-shadow: 0 0 0 3px rgba(201,168,76,.05); }
+.field-input::placeholder { color: var(--text-muted); font-style: italic; }
+input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(.5) sepia(1) saturate(2) hue-rotate(10deg); cursor: pointer; }
+
+/* Biometric grid */
+.bio-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+@media(max-width:400px) { .bio-grid { grid-template-columns: 1fr 1fr; } }
+.bio-field { display: flex; flex-direction: column; gap: 5px; }
+.bio-input {
+  background: rgba(0,0,0,.45); border: 1px solid rgba(201,168,76,.13); border-radius: 2px;
+  padding: 10px 8px; color: var(--text-primary);
+  font-family: var(--font-body); font-size: 17px;
+  text-align: center; outline: none;
+  transition: var(--transition); width: 100%;
+}
+.bio-input:focus { border-color: rgba(201,168,76,.42); box-shadow: 0 0 0 3px rgba(201,168,76,.05); }
+.bio-unit { font-family: var(--font-display); font-size: 9px; color: var(--text-muted); text-align: center; letter-spacing: .1em; font-style: italic; }
+
+/* ============================================================
+   Photo Upload
+   ============================================================ */
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.photo-box  {
+  position: relative; aspect-ratio: 3/4;
+  border: 1.5px dashed rgba(201,168,76,.18); border-radius: 2px;
+  overflow: hidden; cursor: pointer; transition: var(--transition);
+  background: rgba(0,0,0,.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+}
+.photo-box:hover                         { border-color: rgba(201,168,76,.4); background: rgba(201,168,76,.03); }
+.photo-box input[type="file"]            { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-icon                             { font-size: 26px; color: var(--gold-400); }
+.upload-label                            { font-family: var(--font-display); font-size: 12px; letter-spacing: .1em; color: var(--text-muted); text-align: center; text-transform: uppercase; line-height: 1.5; font-style: italic; }
+.upload-hint                             { font-family: var(--font-display); font-size: 9px; color: var(--text-muted); opacity: .6; text-align: center; }
+.photo-preview                           { position: absolute; inset: 0; object-fit: cover; display: none; }
+.photo-preview.visible                   { display: block; }
+.photo-overlay                           { position: absolute; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 12px; color: var(--gold-200); letter-spacing: .1em; font-style: italic; }
+.photo-preview.visible ~ .photo-overlay { display: flex; }
+
+/* ============================================================
+   Email Section
+   ============================================================ */
+.email-section   { background: rgba(201,168,76,.04); border: 1px solid rgba(201,168,76,.15); border-radius: 2px; padding: 18px 20px; margin-bottom: 14px; }
+.email-label-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.email-badge     { font-family: var(--font-display); font-size: 9px; letter-spacing: .15em; background: rgba(201,168,76,.12); color: var(--gold-300); padding: 3px 8px; border-radius: 1px; border: 1px solid rgba(201,168,76,.2); text-transform: uppercase; font-style: italic; }
+
+/* ============================================================
+   Plan Cards
+   ============================================================ */
+.plan-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+@media(max-width:480px) { .plan-grid { grid-template-columns: 1fr; gap: 8px; } }
+.plan-card {
+  border: 1.5px solid rgba(201,168,76,.13); border-radius: 2px;
+  padding: 16px 10px; cursor: pointer; transition: var(--transition);
+  text-align: center; position: relative; background: rgba(0,0,0,.2);
+}
+.plan-card:hover    { border-color: rgba(201,168,76,.32); background: rgba(201,168,76,.04); }
+.plan-card.selected { border-color: var(--gold-300); background: rgba(201,168,76,.07); box-shadow: 0 0 18px rgba(201,168,76,.1); }
+.plan-badge   { position: absolute; top: -9px; left: 50%; transform: translateX(-50%); background: var(--gold-300); color: var(--black-900); font-family: var(--font-display); font-size: 8px; letter-spacing: .14em; padding: 2px 10px; border-radius: 1px; text-transform: uppercase; white-space: nowrap; font-style: italic; }
+.plan-name    { font-family: var(--font-display); font-size: 11px; letter-spacing: .16em; color: var(--gold-200); text-transform: uppercase; margin-bottom: 8px; font-style: italic; }
+.plan-price   { font-family: var(--font-display); font-size: 26px; color: var(--gold-100); font-weight: 400; margin-bottom: 3px; text-shadow: 0 0 20px rgba(255,232,176,.2); }
+.plan-pricesub { font-family: var(--font-display); font-size: 9px; color: var(--text-muted); letter-spacing: .1em; font-style: italic; }
+.plan-features { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.plan-features li { font-family: var(--font-display); font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.plan-features li::before { content: '◈ '; color: var(--gold-400); font-size: 7px; }
+
+/* ============================================================
+   Payment Tabs
+   ============================================================ */
+.pay-tabs  { display: flex; gap: 0; border: 1px solid rgba(201,168,76,.13); border-radius: 2px; overflow: hidden; margin-bottom: 12px; }
+.pay-tab   { flex: 1; padding: 9px; text-align: center; font-family: var(--font-display); font-size: 11px; letter-spacing: .12em; color: var(--text-muted); cursor: pointer; transition: var(--transition); border: none; background: transparent; text-transform: uppercase; font-style: italic; }
+.pay-tab.active    { background: rgba(201,168,76,.09); color: var(--gold-200); }
+.pay-tab + .pay-tab { border-left: 1px solid rgba(201,168,76,.1); }
+.pay-panel         { display: none; }
+.pay-panel.active  { display: block; }
+.pay-info          { background: rgba(201,168,76,.04); border: 1px solid rgba(201,168,76,.1); border-radius: 2px; padding: 14px; font-family: var(--font-display); font-size: 12px; color: var(--text-secondary); line-height: 1.8; }
+.pg-name           { font-family: var(--font-display); font-size: 13px; color: var(--gold-200); letter-spacing: .12em; margin-bottom: 6px; display: block; font-style: italic; }
+.pg-status         { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-display); font-size: 10px; color: var(--text-muted); letter-spacing: .1em; font-style: italic; }
+.status-dot        { width: 5px; height: 5px; border-radius: 50%; background: var(--gold-300); animation: pulse 2s ease-in-out infinite; }
+.status-dot.pending { background: #c09a3a; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* Active gateway highlight */
+.pay-panel.gateway-active { display: block; }
+.gateway-highlight { border-color: rgba(201,168,76,.3) !important; background: rgba(201,168,76,.06) !important; }
+
+/* ============================================================
+   CTA Button
+   ============================================================ */
+.cta-wrap    { margin-top: 28px; text-align: center; }
+.cta-divider { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.cta-line    { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,.18), transparent); }
+.cta-text    { font-family: var(--font-display); font-size: 11px; letter-spacing: .22em; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; font-style: italic; }
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  width: 100%; max-width: 420px; padding: 17px 32px;
+  background: linear-gradient(135deg, rgba(201,168,76,.14), rgba(201,168,76,.07));
+  border: 1.5px solid rgba(201,168,76,.48); border-radius: 2px;
+  color: var(--gold-100);
+  font-family: var(--font-display); font-size: 13px; letter-spacing: .22em;
+  text-transform: uppercase; font-style: italic;
+  cursor: pointer; transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.btn-primary::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(201,168,76,.1); border-radius: 50%; transform: translate(-50%,-50%); transition: width .6s, height .6s; }
+.btn-primary:hover::before { width: 450px; height: 450px; }
+.btn-primary:hover  { border-color: var(--gold-300); box-shadow: 0 0 28px rgba(201,168,76,.14); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.trust-row  { display: flex; justify-content: center; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 4px; font-family: var(--font-display); font-size: 10px; color: var(--text-muted); letter-spacing: .06em; font-style: italic; }
+.trust-icon { font-size: 11px; color: var(--gold-400); }
+
+/* ============================================================
+   Loading Overlay
+   ============================================================ */
+.loading-overlay { position: fixed; inset: 0; background: rgba(10,10,10,.97); z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+.loading-overlay.active { display: flex; }
+.loading-emblem { position: relative; width: 100px; height: 100px; }
+.l-ring   { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid transparent; }
+.l-ring-1 { border-top-color: var(--gold-300); border-right-color: rgba(201,168,76,.3); animation: spin 1.8s linear infinite; }
+.l-ring-2 { inset: 12px; border-bottom-color: var(--gold-400); border-left-color: rgba(201,168,76,.2); animation: spin 2.5s linear infinite reverse; }
+.l-ring-3 { inset: 24px; border-top-color: rgba(201,168,76,.5); animation: spin 3.2s linear infinite; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.l-center  { position: absolute; inset: 36px; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold-200); }
+.loading-text { text-align: center; }
+.l-title   { font-family: var(--font-display); font-size: 14px; letter-spacing: .22em; color: var(--gold-200); text-transform: uppercase; font-style: italic; margin-bottom: 10px; }
+.l-status  { font-family: var(--font-display); font-size: 15px; color: var(--text-secondary); letter-spacing: .08em; min-height: 20px; font-style: italic; }
+.l-classic { font-family: var(--font-display); font-size: 13px; color: rgba(255,232,176,.55); font-style: italic; margin-top: 8px; min-height: 18px; }
+.l-progress { width: 220px; height: 1px; background: rgba(201,168,76,.08); border-radius: 1px; overflow: hidden; margin: 8px auto 0; }
+.l-bar      { height: 100%; background: linear-gradient(90deg, var(--gold-400), var(--gold-200)); width: 0%; transition: width .5s ease; border-radius: 1px; }
+
+/* ============================================================
+   Report View
+   ============================================================ */
+.report-container         { display: none; animation: fadeUp .6s ease forwards; }
+.report-container.visible { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.rpt-header    { text-align: center; padding: 32px 0 22px; border-bottom: 1px solid rgba(201,168,76,.1); margin-bottom: 28px; }
+.rpt-stamp     { display: inline-block; border: 1px solid rgba(201,168,76,.25); padding: 4px 16px; font-family: var(--font-display); font-size: 10px; letter-spacing: .25em; color: var(--gold-400); text-transform: uppercase; font-style: italic; margin-bottom: 14px; border-radius: 1px; }
+.rpt-name      { font-family: var(--font-display); font-size: clamp(16px,4vw,24px); color: var(--gold-200); letter-spacing: .1em; margin-bottom: 5px; font-style: italic; }
+.rpt-meta      { font-family: var(--font-display); font-size: 13px; color: var(--text-muted); letter-spacing: .1em; }
+.rpt-id        { font-family: var(--font-display); font-size: 9px; color: rgba(201,168,76,.3); letter-spacing: .2em; margin-top: 5px; font-style: italic; }
+.rpt-section   { margin-bottom: 24px; padding: 22px 20px; border: 1px solid rgba(201,168,76,.08); border-radius: 2px; background: rgba(255,255,255,.01); position: relative; }
+.rpt-section-tag { position: absolute; top: -9px; left: 18px; background: var(--black-900); padding: 0 8px; font-family: var(--font-display); font-size: 9px; letter-spacing: .2em; color: var(--gold-400); text-transform: uppercase; font-style: italic; }
+.rpt-section-title { font-family: var(--font-display); font-size: 17px; color: var(--gold-200); letter-spacing: .12em; margin-bottom: 16px; font-style: italic; text-shadow: 0 0 24px rgba(255,232,176,.15); }
+
+/* Classical quote block */
+.classic-quote-box      { background: rgba(201,168,76,.04); border-left: 2px solid rgba(255,232,176,.45); padding: 14px 18px; margin: 14px 0; border-radius: 0 2px 2px 0; }
+.classic-quote-text     { font-family: var(--font-display); font-size: 16px; color: var(--text-primary); font-style: italic; line-height: 2.0; margin-bottom: 8px; }
+.classic-quote-original { font-family: var(--font-display); font-size: 15px; color: var(--gold-300); margin-bottom: 6px; letter-spacing: .06em; }
+.classic-quote-source   { font-family: var(--font-display); font-size: 10px; color: var(--text-muted); letter-spacing: .12em; font-style: italic; }
+.rpt-body               { font-family: var(--font-body); font-size: 17px; line-height: 2.05; color: var(--text-primary); letter-spacing: 0.01em; }
+.rpt-body p             { margin-bottom: 13px; }
+.rpt-body p:last-child  { margin-bottom: 0; }
+
+/* Layer badge */
+.layer-badge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-display); font-size: 9px; letter-spacing: .15em; color: var(--gold-400); border: 1px solid rgba(201,168,76,.2); padding: 3px 9px; border-radius: 1px; text-transform: uppercase; font-style: italic; margin-bottom: 12px; }
+.layer-dot   { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-300); }
+
+/* Five Element gauges */
+.element-gauges { display: flex; flex-direction: column; gap: 9px; margin: 14px 0; }
+.el-row      { display: flex; align-items: center; gap: 10px; }
+.el-name     { font-family: var(--font-display); width: 60px; font-size: 11px; letter-spacing: .08em; color: var(--text-muted); flex-shrink: 0; font-style: italic; }
+.el-bar-bg   { flex: 1; height: 3px; background: rgba(255,255,255,.04); border-radius: 2px; overflow: hidden; }
+.el-bar-fill { height: 100%; border-radius: 2px; transition: width 1.2s ease .2s; width: 0%; }
+.el-val      { font-family: var(--font-display); width: 32px; font-size: 11px; color: var(--text-muted); text-align: right; flex-shrink: 0; font-style: italic; }
+.el-wood  { background: linear-gradient(90deg,#2e7d32,#43a047); }
+.el-fire  { background: linear-gradient(90deg,#b71c1c,#e53935); }
+.el-earth { background: linear-gradient(90deg,#f57f17,#fbc02d); }
+.el-metal { background: linear-gradient(90deg,#757575,#bdbdbd); }
+.el-water { background: linear-gradient(90deg,#0d47a1,#1976d2); }
+
+/* Health alert badges */
+.health-alert          { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 2px; margin: 10px 0; border: 1px solid; }
+.health-alert.warn     { background: rgba(168,80,50,.06); border-color: rgba(168,80,50,.2); color: rgba(240,180,150,.9); }
+.health-alert.ok       { background: rgba(26,107,58,.06); border-color: rgba(26,107,58,.2); color: rgba(150,220,170,.9); }
+.health-alert.critical { background: rgba(168,50,50,.08); border-color: rgba(168,50,50,.25); color: rgba(240,150,150,.9); }
+.ha-icon   { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.ha-text   { font-family: var(--font-body); font-size: 15px; line-height: 1.85; color: inherit; }
+.ha-source { font-family: var(--font-display); font-size: 10px; color: var(--gold-500); margin-top: 4px; font-style: italic; }
+
+/* Prescription cards */
+.rx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+@media(max-width:380px) { .rx-grid { grid-template-columns: 1fr; } }
+.rx-card  { padding: 14px; border: 1px solid rgba(201,168,76,.1); border-radius: 2px; background: rgba(0,0,0,.2); }
+.rx-icon  { font-size: 18px; margin-bottom: 5px; }
+.rx-title { font-family: var(--font-display); font-size: 10px; letter-spacing: .14em; color: var(--gold-300); text-transform: uppercase; margin-bottom: 6px; font-style: italic; }
+.rx-text  { font-family: var(--font-body); font-size: 15px; color: var(--text-primary); line-height: 1.8; }
+
+/* Curated prescription block */
+.prescription-block { margin-top: 28px; border: 1.5px solid rgba(201,168,76,.2); border-radius: 2px; overflow: hidden; }
+.rx-header-bar      { background: rgba(201,168,76,.07); padding: 14px 18px; border-bottom: 1px solid rgba(201,168,76,.12); display: flex; align-items: center; justify-content: space-between; }
+.rx-header-title    { font-family: var(--font-display); font-size: 11px; letter-spacing: .2em; color: var(--gold-200); text-transform: uppercase; font-style: italic; }
+.rx-header-stamp    { font-family: var(--font-display); font-size: 9px; letter-spacing: .15em; color: var(--text-muted); border: 1px solid rgba(201,168,76,.15); padding: 2px 8px; border-radius: 1px; font-style: italic; }
+.rx-items           { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+.rx-item            { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: rgba(0,0,0,.25); border: 1px solid rgba(201,168,76,.08); border-radius: 2px; transition: var(--transition); }
+.rx-item:hover      { border-color: rgba(201,168,76,.22); background: rgba(201,168,76,.04); }
+.rx-item-num        { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(201,168,76,.3); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 10px; color: var(--gold-300); font-style: italic; flex-shrink: 0; margin-top: 2px; }
+.rx-item-content    { flex: 1; }
+.rx-item-label      { font-family: var(--font-display); font-size: 9px; letter-spacing: .15em; color: var(--gold-400); text-transform: uppercase; margin-bottom: 4px; font-style: italic; }
+.rx-item-title      { font-family: var(--font-display); font-size: 16px; color: var(--gold-100); margin-bottom: 5px; line-height: 1.5; }
+.rx-item-reason     { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); line-height: 1.8; font-style: italic; }
+.rx-item-price      { font-family: var(--font-display); font-size: 15px; color: var(--gold-200); font-weight: 300; flex-shrink: 0; text-align: right; }
+.rx-cta-row         { padding: 14px 18px; border-top: 1px solid rgba(201,168,76,.1); display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-rx-pay         { flex: 1; min-width: 140px; padding: 13px; background: linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.09)); border: 1.5px solid rgba(201,168,76,.45); border-radius: 2px; color: var(--gold-100); font-family: var(--font-display); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-style: italic; cursor: pointer; transition: var(--transition); text-align: center; }
+.btn-rx-pay:hover   { border-color: var(--gold-300); box-shadow: 0 0 20px rgba(201,168,76,.12); }
+.btn-rx-consult     { flex: 1; min-width: 140px; padding: 13px; background: transparent; border: 1px solid rgba(201,168,76,.18); border-radius: 2px; color: var(--text-muted); font-family: var(--font-display); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-style: italic; cursor: pointer; transition: var(--transition); text-align: center; }
+.btn-rx-consult:hover { border-color: rgba(255,232,176,.45); color: var(--gold-300); }
+
+/* Share section */
+.share-section { text-align: center; padding: 24px 0; border-top: 1px solid rgba(201,168,76,.08); margin-top: 28px; }
+.share-title   { font-family: var(--font-display); font-size: 10px; letter-spacing: .22em; color: var(--text-muted); text-transform: uppercase; font-style: italic; margin-bottom: 14px; }
+.share-btns    { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.share-btn     { display: flex; align-items: center; gap: 6px; padding: 9px 16px; border: 1px solid rgba(201,168,76,.18); border-radius: 2px; background: transparent; color: var(--text-secondary); font-family: var(--font-display); font-size: 12px; letter-spacing: .1em; font-style: italic; cursor: pointer; transition: var(--transition); }
+.share-btn:hover { border-color: rgba(201,168,76,.38); color: var(--gold-200); background: rgba(201,168,76,.04); }
+
+/* ============================================================
+   Subscription Dashboard (Premium Members)
+   ============================================================ */
+.sub-dashboard { display: none; }
+.sub-dashboard.visible { display: block; animation: fadeUp .6s ease forwards; }
+
+.sub-header { text-align: center; padding: 28px 0 18px; border-bottom: 1px solid rgba(201,168,76,.12); margin-bottom: 24px; }
+.sub-badge  { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); border-radius: 2px; padding: 4px 12px; font-family: var(--font-display); font-size: 9px; letter-spacing: .2em; color: var(--gold-300); text-transform: uppercase; font-style: italic; margin-bottom: 12px; }
+.sub-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold-300); animation: pulse 2s ease-in-out infinite; }
+
+.daily-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; }
+@media(max-width:440px) { .daily-grid { grid-template-columns: 1fr; } }
+.daily-card {
+  background: rgba(255,255,255,.018); border: 1px solid rgba(201,168,76,.09); border-radius: 2px;
+  padding: 14px 16px; transition: var(--transition);
+}
+.daily-card:hover { border-color: rgba(201,168,76,.22); background: rgba(255,255,255,.025); }
+.daily-card-icon  { font-size: 18px; margin-bottom: 6px; }
+.daily-card-label { font-family: var(--font-display); font-size: 9px; letter-spacing: .18em; color: var(--gold-400); text-transform: uppercase; font-style: italic; margin-bottom: 4px; }
+.daily-card-value { font-family: var(--font-display); font-size: 16px; color: var(--text-primary); line-height: 1.6; }
+.daily-card-sub   { font-family: var(--font-body); font-size: 12px; color: var(--text-muted); margin-top: 3px; font-style: italic; }
+
+/* Lottery block */
+.lottery-block { background: rgba(201,168,76,.04); border: 1.5px solid rgba(201,168,76,.18); border-radius: 2px; padding: 20px; margin-bottom: 20px; }
+.lottery-title { font-family: var(--font-display); font-size: 12px; letter-spacing: .18em; color: var(--gold-200); text-transform: uppercase; font-style: italic; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.lottery-sets  { display: flex; flex-direction: column; gap: 12px; }
+.lottery-set   { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lottery-set-label { font-family: var(--font-display); font-size: 9px; letter-spacing: .14em; color: var(--text-muted); font-style: italic; width: 48px; flex-shrink: 0; }
+.lottery-num   { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; color: var(--black-900); font-weight: 600; background: var(--gold-300); }
+.lottery-num:nth-child(even) { background: var(--gold-200); }
+
+/* ============================================================
+   PWA Banner
+   ============================================================ */
+.pwa-banner         { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17,17,17,.97); border-top: 1px solid rgba(201,168,76,.18); padding: 12px 18px; display: none; align-items: center; gap: 10px; z-index: 500; backdrop-filter: blur(10px); }
+.pwa-banner.visible { display: flex; }
+.pwa-icon     { width: 38px; height: 38px; background: linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.05)); border: 1px solid rgba(201,168,76,.28); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.pwa-text     { flex: 1; }
+.pwa-t        { font-family: var(--font-display); font-size: 13px; color: var(--text-primary); letter-spacing: .05em; }
+.pwa-s        { font-family: var(--font-display); font-size: 10px; color: var(--text-muted); margin-top: 1px; font-style: italic; }
+.pwa-install  { padding: 7px 14px; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.38); border-radius: 2px; color: var(--gold-200); font-family: var(--font-display); font-size: 11px; letter-spacing: .12em; cursor: pointer; text-transform: uppercase; font-style: italic; flex-shrink: 0; transition: var(--transition); }
+.pwa-close    { background: none; border: none; color: var(--text-muted); font-size: 15px; cursor: pointer; padding: 4px; flex-shrink: 0; line-height: 1; }
+
+</style>
+</head>
+<body>
+
+<div id="so-app">
+<div class="app-inner">
+
+  <!-- ── Header ── -->
+  <header class="oracle-header">
+    <div class="header-emblem">
+      <div class="emblem-ring"><span class="emblem-symbol">☯</span></div>
+    </div>
+    <h1 class="brand-name" data-i18n="brandName">Sovereign Oracle</h1>
+    <p class="brand-sub"  data-i18n="brandSub">Precision Destiny Analysis · Classical Wisdom Engine</p>
+    <p class="brand-classic" data-i18n="brandClassic">Four Pillars · Five Elements · Classical Prescriptions</p>
+    <div class="lang-switcher">
+      <button class="lang-btn" onclick="setLang('ko')" id="lang-ko">한국어</button>
+      <button class="lang-btn active" onclick="setLang('en')" id="lang-en">English</button>
+    </div>
+  </header>
+
+  <!-- ── Step Bar ── -->
+  <div class="step-bar" id="stepBar">
+    <div class="s-dot active" id="s1"><div class="s-circle">I</div><span class="s-label" data-i18n="step1">Profile</span></div>
+    <div class="s-line"></div>
+    <div class="s-dot" id="s2"><div class="s-circle">II</div><span class="s-label" data-i18n="step2">Payment</span></div>
+    <div class="s-line"></div>
+    <div class="s-dot" id="s3"><div class="s-circle">III</div><span class="s-label" data-i18n="step3">Analysis</span></div>
+    <div class="s-line"></div>
+    <div class="s-dot" id="s4"><div class="s-circle">IV</div><span class="s-label" data-i18n="step4">Report</span></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       VIEW 1 — Input Form
+       ═══════════════════════════════════════════ -->
+  <div id="view-input">
+
+    <!-- LAYER 1: Four Pillars / 사주 -->
+    <div class="form-section">
+      <span class="layer-tag">Layer 1 · Foundation</span>
+      <div class="sec-header">
+        <div class="sec-num">I</div>
+        <h2 class="sec-title" data-i18n="sec1Title">Birth Chart Profile</h2>
+        <span class="sec-classic">四柱推命</span>
+      </div>
+      <div class="classic-hint" id="hint-layer1">
+        <p class="classic-hint-text">"A person's destiny is defined by four temporal pillars — the precise coordinates of cosmic energy at the moment of birth."</p>
+        <p class="classic-hint-source">— Zi Ping Zhen Quan, Chapter One: On the Foundation of Destiny</p>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="birthdate" data-i18n="birthLabel">Date of Birth</label>
+        <input type="date" id="birthdate" class="field-input" required>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="birth-time" data-i18n="birthTimeLabel">Birth Hour</label>
+        <select id="birth-time" class="field-input">
+          <option value="">Unknown / 모름</option>
+          <option value="자시">子時 (23:00 – 01:00)</option>
+          <option value="축시">丑時 (01:00 – 03:00)</option>
+          <option value="인시">寅時 (03:00 – 05:00)</option>
+          <option value="묘시">卯時 (05:00 – 07:00)</option>
+          <option value="진시">辰時 (07:00 – 09:00)</option>
+          <option value="사시">巳時 (09:00 – 11:00)</option>
+          <option value="오시">午時 (11:00 – 13:00)</option>
+          <option value="미시">未時 (13:00 – 15:00)</option>
+          <option value="신시">申時 (15:00 – 17:00)</option>
+          <option value="유시">酉時 (17:00 – 19:00)</option>
+          <option value="술시">戌時 (19:00 – 21:00)</option>
+          <option value="해시">亥時 (21:00 – 23:00)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="gender" data-i18n="genderLabel">Gender</label>
+        <select id="gender" class="field-input">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- LAYER 2+3: Face & Palm / 관상·수상 -->
+    <div class="form-section">
+      <span class="layer-tag">Layer 2·3 · Reading</span>
+      <div class="sec-header">
+        <div class="sec-num">II</div>
+        <h2 class="sec-title" data-i18n="sec3Title">Face & Palm Reading</h2>
+        <span class="sec-classic">望診 · 手相</span>
+      </div>
+      <div class="classic-hint" id="hint-layer23">
+        <p class="classic-hint-text">"The face is a mirror of the inner organs. Complexion reveals the state of vital energy and blood. Observe the Five Colors to discern fortune and fate."</p>
+        <p class="classic-hint-source">— Huangdi Neijing, Ling Shu: Five Colors · Ma Yi Shen Xiang, Vol. III</p>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-box">
+          <input type="file" id="face-photo" accept="image/*" capture="user"
+            onchange="previewPhoto(this,'face-prev')" aria-label="Face photo upload">
+          <img class="photo-preview" id="face-prev" src="" alt="">
+          <div class="photo-overlay">Change</div>
+          <div class="upload-icon">◉</div>
+          <span class="upload-label" data-i18n="faceLabel">Face Reading Photo</span>
+          <span class="upload-hint">Camera or file</span>
+        </div>
+        <div class="photo-box">
+          <input type="file" id="palm-photo" accept="image/*" capture="environment"
+            onchange="previewPhoto(this,'palm-prev')" aria-label="Palm photo upload">
+          <img class="photo-preview" id="palm-prev" src="" alt="">
+          <div class="photo-overlay">Change</div>
+          <div class="upload-icon">✋</div>
+          <span class="upload-label" data-i18n="palmLabel">Palm Reading Photo</span>
+          <span class="upload-hint">Camera or file</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYER 4+5: Biometrics / 신체 지표 -->
+    <div class="form-section">
+      <span class="layer-tag">Layer 4·5 · Biometrics</span>
+      <div class="sec-header">
+        <div class="sec-num">III</div>
+        <h2 class="sec-title" data-i18n="sec2Title">Biometric Vitality Index</h2>
+        <span class="sec-classic">生命數値</span>
+      </div>
+      <div class="classic-hint" id="hint-layer45">
+        <p class="classic-hint-text">"Earth element governs the digestive and metabolic axis. Its dysregulation produces wasting and thirst — precursors to modern metabolic disease. Fire-Water discord manifests as circulatory pressure anomalies."</p>
+        <p class="classic-hint-source">— Dongui Bogam, Internal Chapters: Metabolic Disorders</p>
+      </div>
+      <div class="bio-grid">
+        <div class="bio-field">
+          <label class="field-label" for="bp-sys">Systolic BP</label>
+          <input type="number" id="bp-sys" class="bio-input" placeholder="120" min="60" max="220">
+          <span class="bio-unit">mmHg</span>
+        </div>
+        <div class="bio-field">
+          <label class="field-label" for="bp-dia">Diastolic BP</label>
+          <input type="number" id="bp-dia" class="bio-input" placeholder="80" min="40" max="140">
+          <span class="bio-unit">mmHg</span>
+        </div>
+        <div class="bio-field">
+          <label class="field-label" for="pulse">Pulse</label>
+          <input type="number" id="pulse" class="bio-input" placeholder="72" min="40" max="200">
+          <span class="bio-unit">bpm</span>
+        </div>
+        <div class="bio-field">
+          <label class="field-label" for="glucose">Blood Glucose</label>
+          <input type="number" id="glucose" class="bio-input" placeholder="95" min="50" max="600">
+          <span class="bio-unit">mg/dL</span>
+        </div>
+        <div class="bio-field">
+          <label class="field-label" for="weight">Weight</label>
+          <input type="number" id="weight" class="bio-input" placeholder="65" min="30" max="200">
+          <span class="bio-unit">kg</span>
+        </div>
+        <div class="bio-field">
+          <label class="field-label" for="height">Height</label>
+          <input type="number" id="height" class="bio-input" placeholder="170" min="100" max="230">
+          <span class="bio-unit">cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Area of Focus / 고민 -->
+    <div class="form-section">
+      <div class="sec-header">
+        <div class="sec-num">IV</div>
+        <h2 class="sec-title" data-i18n="sec4Title">Area of Focus</h2>
+        <span class="sec-classic">選擇</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Primary area of concern</label>
+        <select id="concern-area" class="field-input">
+          <option value="health">Health &amp; Physical Vitality</option>
+          <option value="wealth">Wealth, Career &amp; Business</option>
+          <option value="relationship">Love &amp; Human Connection</option>
+          <option value="family">Family, Children &amp; Parents</option>
+          <option value="mindset">Inner Psychology &amp; Growth</option>
+          <option value="timing">Fortune Timing &amp; Life Cycles</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Additional context (optional)</label>
+        <textarea id="concern-text" class="field-input" rows="3"
+          placeholder="e.g. I am considering a major career change this year and have been experiencing poor sleep recently..."
+          style="resize:vertical;min-height:80px"></textarea>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="email-section">
+      <div class="email-label-row">
+        <label class="field-label" style="margin-bottom:0" for="user-email">Report delivery email</label>
+        <span class="email-badge" id="email-badge">Delivered Instantly</span>
+      </div>
+      <input type="email" id="user-email" class="field-input" placeholder="your@email.com" autocomplete="email">
+      <p id="email-hint" style="font-family:var(--font-display);font-size:11px;color:var(--text-muted);margin-top:6px;letter-spacing:.06em;font-style:italic">
+        Your PDF report will be sent to this address the moment analysis is complete. All data is encrypted and never shared.
+      </p>
+    </div>
+
+    <!-- Plan Selection / 플랜 선택 -->
+    <div class="form-section">
+      <div class="sec-header">
+        <div class="sec-num">V</div>
+        <h2 class="sec-title" data-i18n="sec5Title">Choose Your Reading</h2>
+      </div>
+      <div class="plan-grid" id="planGrid"></div>
+
+      <!-- Payment Tabs — synced automatically to language via syncPaymentGateway() -->
+      <div class="pay-tabs">
+        <button class="pay-tab active" onclick="switchPayTab('domestic')" id="tab-domestic">Korean Card</button>
+        <button class="pay-tab" onclick="switchPayTab('global')" id="tab-global">Global Card</button>
+      </div>
+      <div class="pay-panel active" id="panel-domestic">
+        <div class="pay-info">
+          <span class="pg-name">KG Inicis — Domestic Payments</span>
+          <p>Credit · Debit · KakaoPay · NaverPay · PAYCO</p>
+          <p style="margin-top:8px"><span class="pg-status"><span class="status-dot"></span>Integration ready — Test mode active</span></p>
+        </div>
+      </div>
+      <div class="pay-panel" id="panel-global">
+        <div class="pay-info gateway-highlight">
+          <span class="pg-name">Airwallex — Global Payments</span>
+          <p>Visa · Mastercard · Amex · Apple Pay · Google Pay</p>
+          <p style="margin-top:8px"><span class="pg-status"><span class="status-dot"></span>Active for international customers</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <div class="cta-divider">
+        <div class="cta-line"></div>
+        <span class="cta-text" data-i18n="ctaDivider">Your classical reading begins now</span>
+        <div class="cta-line"></div>
+      </div>
+      <button class="btn-primary" onclick="startDiagnosis()">
+        <span>☯</span>
+        <span data-i18n="ctaBtn">Generate My Precision Report</span>
+      </button>
+      <div class="trust-row" id="trust-row">
+        <span class="trust-item"><span class="trust-icon">🔒</span><span>256-bit Encryption</span></span>
+        <span class="trust-item"><span class="trust-icon">📜</span><span>Classical Citations</span></span>
+        <span class="trust-item"><span class="trust-icon">📋</span><span>Detailed PDF Report</span></span>
+        <span class="trust-item"><span class="trust-icon">📧</span><span>Instant Email Delivery</span></span>
+      </div>
+    </div>
+
+  </div><!-- /view-input -->
+
+  <!-- ═══════════════════════════════════════════
+       VIEW 2 — Report Result
+       ═══════════════════════════════════════════ -->
+  <div id="view-report" class="report-container"></div>
+
+</div><!-- /app-inner -->
+</div><!-- /so-app -->
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-emblem">
+    <div class="l-ring l-ring-1"></div>
+    <div class="l-ring l-ring-2"></div>
+    <div class="l-ring l-ring-3"></div>
+    <div class="l-center">☯</div>
+  </div>
+  <div class="loading-text">
+    <div class="l-title" data-i18n="loadingTitle">Oracle Engine Initializing</div>
+    <div class="l-status" id="l-status">Initializing...</div>
+    <div class="l-classic" id="l-classic"></div>
+  </div>
+  <div class="l-progress"><div class="l-bar" id="l-bar"></div></div>
+</div>
+
+<!-- PWA Banner -->
+<div class="pwa-banner" id="pwaBanner">
+  <div class="pwa-icon">☯</div>
+  <div class="pwa-text">
+    <div class="pwa-t" data-i18n="pwaBannerTitle">Install Sovereign Oracle</div>
+    <div class="pwa-s" data-i18n="pwaBannerSub">Add to home screen for instant access</div>
+  </div>
+  <button class="pwa-install" onclick="installPWA()" data-i18n="pwaInstall">Install</button>
+  <button class="pwa-close"   onclick="closePWA()" aria-label="Close">✕</button>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   ██  LOCALE — 완전 인라인 내장 (locale.json 통합)  ██
+   한국어/영어 데이터 전체. 마스터가 직접 수정 가능.
+   ════════════════════════════════════════════════════════════════ */
+const LOCALE = {
+  ko: {
+  "brandName": "소버린 오라클",
+  "brandSub": "정밀 역학 진단 · 고전 비서 엔진",
+  "brandClassic": "子平眞詮 · 滴天髓 · 窮通寶鑑",
+  "step1": "입력",
+  "step2": "결제",
+  "step3": "진단",
+  "step4": "리포트",
+  "sec1Title": "사주 기반 데이터",
+  "sec2Title": "신체 에너지 지표",
+  "sec3Title": "망진 · 수상 분석",
+  "sec4Title": "현재 고민 · 상담 주제",
+  "sec5Title": "리포트 플랜 선택",
+  "birthLabel": "생년월일",
+  "birthTimeLabel": "출생 시간 (시주)",
+  "genderLabel": "성별",
+  "faceLabel": "관상 얼굴 사진",
+  "palmLabel": "수상 손금 사진",
+  "ctaDivider": "고전의 파수꾼이 진단을 시작합니다",
+  "ctaBtn": "정밀 역학 리포트 생성하기",
+  "loadingTitle": "고전 비서 엔진 가동 중",
+  "reportStamp": "소버린 오라클 정밀 역학 진단서",
+  "pwaBannerTitle": "소버린 오라클 앱 설치",
+  "pwaBannerSub": "홈 화면에 추가하면 더 빠르게 접속",
+  "pwaInstall": "설치",
+  "loadingSteps": [
+    {
+      "status": "Layer 1 · 사주 팔자 연산 중...",
+      "classic": "命有八字，格局定焉 — 자평진전"
+    },
+    {
+      "status": "Layer 1 · 오행 생극제화 분석 중...",
+      "classic": "生克制化，天道之常也 — 적천수"
+    },
+    {
+      "status": "Layer 1 · 용신(用神) 도출 중...",
+      "classic": "用神者，八字之主宰也 — 자평진전"
+    },
+    {
+      "status": "Layer 2 · 관상 망진 원칙 적용 중...",
+      "classic": "面色者，氣血之華也 — 황제내경"
+    },
+    {
+      "status": "Layer 3 · 수상 미세 신경 분석 중...",
+      "classic": "手紋之紋，後天變化之記也 — 마의신상"
+    },
+    {
+      "status": "Layer 4 · 토기(土氣) · 당뇨 교차 분석 중...",
+      "classic": "土主脾胃，消渴之源 — 동의보감"
+    },
+    {
+      "status": "Layer 5 · 화수(火水) · 혈압 균형 진단 중...",
+      "classic": "火水未濟，血脈失調 — 황제내경"
+    },
+    {
+      "status": "마스터 DB 고전 처방 매칭 중...",
+      "classic": ""
+    },
+    {
+      "status": "맞춤형 리포트 최종 완성 중...",
+      "classic": ""
+    }
+  ],
+  "formHints": {
+    "layer1": {
+      "text": "\"사람의 命은 生年·月·日·時 네 기둥에 의해 그 氣의 좌표가 결정된다.\"",
+      "source": "— 子平眞詮 제1장 論命之本"
+    },
+    "layer23": {
+      "text": "\"面部는 臟腑의 거울이요, 色澤은 氣血의 현현이니 五色을 살펴 吉凶을 판단한다.\"",
+      "source": "— 黃帝內經 靈樞 五色篇 · 麻衣神相 제3권"
+    },
+    "layer45": {
+      "text": "\"土氣는 脾胃를 주관하니 조절력의 失調가 消渴(당뇨)로 나타나고, 火水의 불균형은 血脈의 압력 이상으로 드러난다.\"",
+      "source": "— 東醫寶鑑 內景篇 消渴門 · 五臟六腑篇"
+    }
+  },
+  "ui": {
+    "concernOptions": [
+      {
+        "value": "health",
+        "label": "건강 · 체력 관리"
+      },
+      {
+        "value": "wealth",
+        "label": "재물 · 사업 · 직업"
+      },
+      {
+        "value": "relationship",
+        "label": "인연 · 대인 관계"
+      },
+      {
+        "value": "family",
+        "label": "가정 · 자녀 · 부모"
+      },
+      {
+        "value": "mindset",
+        "label": "심리 · 내면 성장"
+      },
+      {
+        "value": "timing",
+        "label": "시기 · 운의 흐름"
+      }
+    ],
+    "genderOptions": [
+      {
+        "value": "male",
+        "label": "남성"
+      },
+      {
+        "value": "female",
+        "label": "여성"
+      }
+    ],
+    "payTabs": {
+      "domestic": "국내 카드",
+      "global": "해외 카드"
+    },
+    "payInfo": {
+      "domestic": {
+        "name": "KG이니시스 (국내 결제)",
+        "methods": "신용카드 · 체크카드 · 카카오페이 · 네이버페이 · 페이코",
+        "status": "연동 준비 완료 · 테스트 모드"
+      },
+      "global": {
+        "name": "Airwallex (Global Payment)",
+        "methods": "Visa · Mastercard · AMEX · Apple Pay · Google Pay",
+        "status": "해외 법인 설립 완료 후 활성화"
+      }
+    },
+    "emailBadge": "리포트 즉시 발송",
+    "emailHint": "분석 완료 즉시 PDF 리포트가 이 이메일로 발송됩니다. 개인정보는 암호화 보관됩니다.",
+    "shareTitle": "나의 진단 결과 공유하기",
+    "trustItems": [
+      "데이터 암호화",
+      "고전 직접 인용",
+      "A4 분량 리포트",
+      "이메일 즉시 발송"
+    ],
+    "reportChapters": {
+      "ch1": "第一章 · Layer 1 · 사주 오행 분석",
+      "ch2": "第二章 · Layer 4·5 · 신체 에너지 진단",
+      "ch3": "第三章 · Layer 2·3 · 망진 · 수상",
+      "ch4": "第四章 · 시기 운세 · 맞춤 처방",
+      "ch1badge": "자평진전 · 적천수 · 궁통보감 직접 인용",
+      "ch2badge": "동의보감 · 황제내경 · 土氣·火水 교차 분석",
+      "ch3badge": "황제내경 영추 오색편 · 마의신상",
+      "ch4badge": "적천수 · 궁통보감 · 대운·세운 교차",
+      "ch2title": "건강 지표와 오행의 인과 분석",
+      "physioQuote": "相者，氣之外見也 — 관상은 기운이 밖으로 드러난 것이다",
+      "physioQuoteSource": "麻衣神相 제3권 形神篇",
+      "concernTitle": "현재 고민 처방",
+      "dietaryRx": "식이 처방",
+      "recommended": "권장 보조",
+      "masterRxTitle": "마스터 처방 · 맞춤 큐레이션",
+      "rxStamp": "처방전 · 정식",
+      "proceedPayment": "처방 상품 결제하기",
+      "bookConsult": "마스터 1:1 상담 예약"
+    },
+    "pwaTitle": "소버린 오라클이 기다립니다...",
+    "tabTitle": "소버린 오라클 — 고전 역학 정밀 진단",
+    "alertBirthdate": "생년월일을 입력해주세요.",
+    "linkCopied": "링크가 복사되었습니다!",
+    "paymentTestMsg": "[KG이니시스] 테스트 모드\n결제 연동이 준비되었습니다.\n실 MID 입력 후 즉시 활성화됩니다.",
+    "airwallexMsg": "[Airwallex] 해외 법인 설립 완료 후 활성화됩니다.",
+    "paymentFail": "결제 실패. 다시 시도해주세요.",
+    "safariPWA": "Safari: [공유] → [홈 화면에 추가]",
+    "bmiLabels": {
+      "under": "저체중",
+      "normal": "정상",
+      "over": "과체중",
+      "obese": "비만"
+    },
+    "ageUnit": "세",
+    "bornUnit": "년생"
+  }
+},
+  en: {
+  "brandName": "Sovereign Oracle",
+  "brandSub": "Precision Destiny Analysis · Classical Wisdom Engine",
+  "brandClassic": "Four Pillars · Five Elements · Classical Prescriptions",
+  "step1": "Profile",
+  "step2": "Payment",
+  "step3": "Analysis",
+  "step4": "Report",
+  "sec1Title": "Birth Chart Profile",
+  "sec2Title": "Biometric Vitality Index",
+  "sec3Title": "Face & Palm Reading",
+  "sec4Title": "Area of Focus",
+  "sec5Title": "Choose Your Reading",
+  "birthLabel": "Date of Birth",
+  "birthTimeLabel": "Birth Hour",
+  "genderLabel": "Gender",
+  "faceLabel": "Face Reading Photo",
+  "palmLabel": "Palm Reading Photo",
+  "ctaDivider": "Your classical reading begins now",
+  "ctaBtn": "Generate My Precision Report",
+  "loadingTitle": "Oracle Engine Initializing",
+  "reportStamp": "Sovereign Oracle — Precision Destiny Report",
+  "pwaBannerTitle": "Install Sovereign Oracle",
+  "pwaBannerSub": "Add to home screen for instant access",
+  "pwaInstall": "Install",
+  "loadingSteps": [
+    {
+      "status": "Layer 1 — Mapping your Four Pillars birth chart...",
+      "classic": "Destiny is written in Eight Characters — Zi Ping Zhen Quan"
+    },
+    {
+      "status": "Layer 1 — Tracing Five Element generation and control...",
+      "classic": "Generation and restraint are the constant laws of Heaven — Di Tian Sui"
+    },
+    {
+      "status": "Layer 1 — Identifying your governing favorable element...",
+      "classic": "The favorable element is the sovereign of the chart — Zi Ping Zhen Quan"
+    },
+    {
+      "status": "Layer 2 — Applying classical face-reading principles...",
+      "classic": "Facial complexion is the flowering of vital energy — Huangdi Neijing"
+    },
+    {
+      "status": "Layer 3 — Reading palm line micro-patterns...",
+      "classic": "Palm patterns are the record of life's unfolding — Ma Yi Shen Xiang"
+    },
+    {
+      "status": "Layer 4 — Earth element cross-analysis with glucose data...",
+      "classic": "Earth governs the digestive axis — root of metabolic imbalance"
+    },
+    {
+      "status": "Layer 5 — Fire-Water balance and circulatory pressure...",
+      "classic": "When Fire and Water discord, the vessels lose their rhythm"
+    },
+    {
+      "status": "Matching classical prescriptions to your profile...",
+      "classic": ""
+    },
+    {
+      "status": "Composing your personalized report...",
+      "classic": ""
+    }
+  ],
+  "formHints": {
+    "layer1": {
+      "text": "\"A person's destiny is defined by four temporal pillars — the precise coordinates of cosmic energy at the moment of birth.\"",
+      "source": "— Zi Ping Zhen Quan, Chapter One: On the Foundation of Destiny"
+    },
+    "layer23": {
+      "text": "\"The face is a mirror of the inner organs. Complexion reveals the state of vital energy and blood. Observe the Five Colors to discern fortune and fate.\"",
+      "source": "— Huangdi Neijing, Ling Shu: Five Colors · Ma Yi Shen Xiang, Vol. III"
+    },
+    "layer45": {
+      "text": "\"Earth element governs the digestive and metabolic axis. Its dysregulation produces wasting and thirst — precursors to modern metabolic disease. Fire-Water discord manifests as circulatory pressure anomalies.\"",
+      "source": "— Dongui Bogam, Internal Chapters: Metabolic Disorders"
+    }
+  },
+  "ui": {
+    "concernOptions": [
+      {
+        "value": "health",
+        "label": "Health & Physical Vitality"
+      },
+      {
+        "value": "wealth",
+        "label": "Wealth, Career & Business"
+      },
+      {
+        "value": "relationship",
+        "label": "Love & Human Connection"
+      },
+      {
+        "value": "family",
+        "label": "Family, Children & Parents"
+      },
+      {
+        "value": "mindset",
+        "label": "Inner Psychology & Growth"
+      },
+      {
+        "value": "timing",
+        "label": "Fortune Timing & Life Cycles"
+      }
+    ],
+    "genderOptions": [
+      {
+        "value": "male",
+        "label": "Male"
+      },
+      {
+        "value": "female",
+        "label": "Female"
+      }
+    ],
+    "payTabs": {
+      "domestic": "Korean Card",
+      "global": "Global Card"
+    },
+    "payInfo": {
+      "domestic": {
+        "name": "KG Inicis — Domestic Payments",
+        "methods": "Credit · Debit · KakaoPay · NaverPay · PAYCO",
+        "status": "Integration ready — Test mode active"
+      },
+      "global": {
+        "name": "Airwallex — Global Payments",
+        "methods": "Visa · Mastercard · Amex · Apple Pay · Google Pay",
+        "status": "Active for international customers"
+      }
+    },
+    "emailBadge": "Delivered Instantly",
+    "emailHint": "Your PDF report will be sent to this address the moment analysis is complete. All data is encrypted and never shared.",
+    "shareTitle": "Share Your Reading",
+    "trustItems": [
+      "256-bit Encryption",
+      "Classical Citations",
+      "Detailed PDF Report",
+      "Instant Email Delivery"
+    ],
+    "reportChapters": {
+      "ch1": "Chapter I — Four Pillars & Five Element Analysis",
+      "ch2": "Chapter II — Biometric & Elemental Diagnosis",
+      "ch3": "Chapter III — Face Reading & Palm Analysis",
+      "ch4": "Chapter IV — Fortune Timing & Prescriptions",
+      "ch1badge": "Zi Ping Zhen Quan · Di Tian Sui · Qiong Tong Bao Jian",
+      "ch2badge": "Dongui Bogam · Huangdi Neijing · Earth and Fire-Water Axes",
+      "ch3badge": "Huangdi Neijing Ling Shu · Ma Yi Shen Xiang Vol. III",
+      "ch4badge": "Di Tian Sui · Qiong Tong Bao Jian · Major and Annual Cycles",
+      "ch2title": "Biometric Readings Through the Five Element Lens",
+      "physioQuote": "Physiognomy is the outward expression of inner vital energy",
+      "physioQuoteSource": "Ma Yi Shen Xiang, Vol. III — Form and Spirit",
+      "concernTitle": "Personalized Prescription",
+      "dietaryRx": "Dietary Rx",
+      "recommended": "Recommended",
+      "masterRxTitle": "Master Prescription — Curated Recommendations",
+      "rxStamp": "Official Prescription",
+      "proceedPayment": "Purchase This Reading",
+      "bookConsult": "Book a Private Consultation"
+    },
+    "pwaTitle": "Sovereign Oracle awaits you...",
+    "tabTitle": "Sovereign Oracle — Precision Destiny Analysis",
+    "alertBirthdate": "Please enter your date of birth to proceed.",
+    "linkCopied": "Link copied to clipboard!",
+    "paymentTestMsg": "[Airwallex] Test mode active.\nPayment integration is ready.\nActivate by entering your live credentials.",
+    "airwallexMsg": "[Airwallex] Will activate upon completing your overseas entity setup.",
+    "paymentFail": "Payment could not be processed. Please try again.",
+    "safariPWA": "In Safari: tap Share, then Add to Home Screen.",
+    "bmiLabels": {
+      "under": "Underweight",
+      "normal": "Healthy Weight",
+      "over": "Overweight",
+      "obese": "Obese"
+    },
+    "ageUnit": "yrs",
+    "bornUnit": ""
+  }
+}
+};
+
+/* ================================================================
+   SOVEREIGN ORACLE — app.js v2.2
+   수석 개발자: Claude
+   ================================================================ */
+
+/* ════════════════════════════════════════════════════════════════
+   ██  SOVEREIGN_CONFIG  ██
+   ── 마스터가 1초 만에 수정하는 단일 구성 창고 ──
+   모든 가격·상품·결제 MID는 이 객체 하나에서만 관리합니다.
+   ════════════════════════════════════════════════════════════════ */
+const SOVEREIGN_CONFIG = {
+
+  /* ── 결제 게이트웨이 자격증명 ── */
+  payment: {
+    inicis: {
+      mid: 'YOUR_INICIS_MID_HERE',       /* ← 실 MID 입력 시 즉시 활성화 */
+      testMode: true
+    },
+    airwallex: {
+      clientId: 'YOUR_AIRWALLEX_CLIENT_ID_HERE',
+      apiKey:   'YOUR_AIRWALLEX_API_KEY_HERE',
+      env:      'prod',                  /* 'demo' | 'prod' */
+      testMode: true
+    }
+  },
+
+  /* ── 1회성 리포트 상품 (A) 수상(손금) ── */
+  productA: {
+    id:      'palmistry_report',
+    nameKo:  '수상(손금) 정밀 분석 리포트',
+    nameEn:  'Palm Reading Precision Report',
+    pages:   'A4 3p',
+    priceKo: 7000,          /* ← 원화 금액 (KG이니시스) */
+    priceEn: 4.99,          /* ← 달러 금액 (Airwallex)  */
+    symbolKo: '₩',
+    symbolEn: '$'
+  },
+
+  /* ── 1회성 리포트 상품 (B) 관상 ── */
+  productB: {
+    id:      'physiognomy_report',
+    nameKo:  '관상 정밀 분석 리포트',
+    nameEn:  'Face Reading Precision Report',
+    pages:   'A4 3p',
+    priceKo: 7000,
+    priceEn: 4.99,
+    symbolKo: '₩',
+    symbolEn: '$'
+  },
+
+  /* ── 1회성 리포트 상품 (C) 사주 종합 ── */
+  productC: {
+    id:      'fourpillars_report',
+    nameKo:  '사주 종합 정밀 리포트',
+    nameEn:  'Four Pillars Comprehensive Report',
+    pages:   'A4 4p',
+    priceKo: 15000,
+    priceEn: 9.99,
+    symbolKo: '₩',
+    symbolEn: '$'
+  },
+
+  /* ── 프리미엄 월 정기 구독 ── */
+  subscription: {
+    id:       'premium_monthly',
+    nameKo:   '프리미엄 월 정기 구독',
+    nameEn:   'Premium Monthly Subscription',
+    priceKo:  20000,         /* ← 월 원화 */
+    priceEn:  14.99,         /* ← 월 달러 */
+    symbolKo: '₩',
+    symbolEn: '$',
+    intervalKo: '월',
+    intervalEn: 'mo',
+    /* 구독 혜택 목록 */
+    featuresKo: [
+      '손금 + 관상 + 사주 분석 무제한',
+      '매일 아침 라이프 케어 대시보드',
+      '운세 · 방향 · 칼러 · 직장 · 음식 · 건강 처방',
+      '행운의 복권 번호 주 2조합 자동 생성',
+      '분기별 운세 업데이트 리포트'
+    ],
+    featuresEn: [
+      'Unlimited Palm, Face & Four Pillars readings',
+      'Daily morning Life Care dashboard',
+      'Fortune · Direction · Color · Workplace · Food · Health Rx',
+      'Weekly lucky lottery numbers — 2 sets auto-generated',
+      'Quarterly fortune update reports'
+    ]
+  }
+};
+
+/* ════════════════════════════════════════════════════════════════
+   ██  LOCALE DATA  ██  (locale.json 로드 — 폴백 인라인)
+   ════════════════════════════════════════════════════════════════ */
+
+    KNOWLEDGE_DB = buildKnowledgeDB(LOCALE_FALLBACK.classics);
+  }
+  applyLocale();
+  renderPlans();
+  updateStep(1);
+}
+
+/* ── 고전 DB를 엔진이 사용하기 쉬운 형태로 변환 ── */
+function buildKnowledgeDB(classics) {
+  if (!classics) return KNOWLEDGE_DB_INLINE;
+  const el = classics.five_elements || {};
+  const hp = (classics.health_classics || []).reduce((acc,h) => { acc[h.id] = h; return acc; }, {});
+  return {
+    elements:     { wood: el.wood, fire: el.fire, earth: el.earth, metal: el.metal, water: el.water },
+    health_bp:    { harmony: hp['hjnj_bp_harmony'], liver_yang: hp['hjnj_liver_yang'], qi_blood: hp['dybj_qi_blood'] },
+    health_meta:  { spleen: hp['dybj_spleen_stomach'], preventive: hp['hjnj_preventive'], kidney: hp['hjnj_kidney_essence'] },
+    physiognomy:  (classics.physiognomy || [])[0] || {},
+    timing:       classics.fortune_timing || [],
+    wealth:       classics.wealth_and_relations || [],
+    ...KNOWLEDGE_DB_INLINE
+  };
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  RUNTIME STATE  ██
+   ════════════════════════════════════════════════════════════════ */
+let currentLang  = 'ko';
+let selectedPlan = 'productC';   /* 기본 선택: 사주 종합 */
+let pwaPrompt    = null;
+let isSubscriber = false;        /* 구독 상태 (로그인 연동 후 교체) */
+
+/* ════════════════════════════════════════════════════════════════
+   ██  LANGUAGE SWITCH + PAYMENT GATEWAY SYNC  ██
+   ════════════════════════════════════════════════════════════════ */
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('lang-' + lang);
+  if (btn) btn.classList.add('active');
+  document.documentElement.lang = lang;
+
+  applyLocale();
+  renderPlans();
+  syncPaymentGateway(lang);   /* ← 결제 게이트웨이 자동 전환 */
+}
+
+/* ── 게이트웨이 파이프라인 동기화 ──
+   KO → KG이니시스(국내) 탭 강조 + Airwallex 숨김
+   EN → Airwallex(글로벌) 탭 강조 + 자동 선택         */
+function syncPaymentGateway(lang) {
+  const tabDom  = document.getElementById('tab-domestic');
+  const tabGlob = document.getElementById('tab-global');
+  const panelDom  = document.getElementById('panel-domestic');
+  const panelGlob = document.getElementById('panel-global');
+  if (!tabDom) return;
+
+  if (lang === 'en') {
+    /* EN → Airwallex 자동 선택, 국내 탭 숨김 */
+    tabDom.style.display   = 'none';
+    panelDom.style.display = 'none';
+    tabGlob.classList.add('active');
+    panelGlob.classList.add('active', 'gateway-highlight');
+    tabDom.classList.remove('active');
+    panelDom.classList.remove('active');
+    /* 결제 패널 텍스트 EN로 재렌더 */
+    renderPaymentPanel('global', lang);
+  } else {
+    /* KO → KG이니시스 기본 선택 */
+    tabDom.style.display   = '';
+    panelDom.style.display = '';
+    tabDom.classList.add('active');
+    panelDom.classList.add('active');
+    tabGlob.classList.remove('active');
+    panelGlob.classList.remove('active', 'gateway-highlight');
+    renderPaymentPanel('domestic', lang);
+  }
+}
+
+function renderPaymentPanel(tab, lang) {
+  const L = (LOCALE[lang] || {}).ui || {};
+  const info = (L.payInfo || {})[tab];
+  if (!info) return;
+  const panelId = 'panel-' + tab;
+  const panel   = document.getElementById(panelId);
+  if (!panel) return;
+  panel.innerHTML = `
+    <div class="pay-info ${tab === 'global' ? 'gateway-highlight' : ''}">
+      <span class="pg-name">${info.name}</span>
+      <p>${info.methods}</p>
+      <p style="margin-top:8px">
+        <span class="pg-status">
+          <span class="status-dot${tab === 'global' && SOVEREIGN_CONFIG.payment.airwallex.testMode ? '' : ' pending'}"></span>
+          ${info.status}
+        </span>
+      </p>
+    </div>`;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  LOCALE RENDERER  ██
+   ════════════════════════════════════════════════════════════════ */
+function applyLocale() {
+  const L = LOCALE[currentLang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (L[k] !== undefined) el.textContent = L[k];
+  });
+  /* concern options */
+  const concernSel = document.getElementById('concern-area');
+  if (concernSel && L.ui && L.ui.concernOptions) {
+    concernSel.innerHTML = L.ui.concernOptions
+      .map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+  }
+  /* gender options */
+  const genderSel = document.getElementById('gender');
+  if (genderSel && L.ui && L.ui.genderOptions) {
+    genderSel.innerHTML = L.ui.genderOptions
+      .map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+  }
+  /* email hint */
+  const emailHint = document.getElementById('email-hint');
+  if (emailHint && L.ui) emailHint.textContent = L.ui.emailHint || '';
+  const emailBadge = document.getElementById('email-badge');
+  if (emailBadge && L.ui) emailBadge.textContent = L.ui.emailBadge || '';
+  /* trust items */
+  const trustRow = document.getElementById('trust-row');
+  if (trustRow && L.ui && L.ui.trustItems) {
+    const icons = ['🔒', '📜', '📋', '📧'];
+    trustRow.innerHTML = L.ui.trustItems.map((t,i) =>
+      `<span class="trust-item"><span class="trust-icon">${icons[i] || '✦'}</span><span>${t}</span></span>`
+    ).join('');
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  PLAN RENDERER  ██
+   ── SOVEREIGN_CONFIG 기반 요금 체계 렌더 ──
+   ════════════════════════════════════════════════════════════════ */
+function renderPlans() {
+  const grid = document.getElementById('planGrid');
+  if (!grid) return;
+  const C  = SOVEREIGN_CONFIG;
+  const isEn  = currentLang === 'en';
+  const sym   = isEn ? '$' : '₩';
+  const perLabel = isEn ? 'one-time' : '1회';
+  const moLabel  = isEn ? '/mo' : '/월';
+
+  /* 상품 정의 — SOVEREIGN_CONFIG에서 직접 읽음 */
+  const plans = [
+    {
+      id:       'productA',
+      name:     isEn ? C.productA.nameEn : C.productA.nameKo,
+      price:    isEn ? `$${C.productA.priceEn}` : `₩${C.productA.priceKo.toLocaleString()}`,
+      pricesub: perLabel,
+      badge:    null,
+      features: isEn
+        ? ['Palm line precision analysis', 'Three-page A4 report', 'Elemental health link', 'Dietary prescription']
+        : ['손금 정밀 분석 리포트', 'A4 3장 분량', '오행 건강 연결 분석', '식이 처방']
+    },
+    {
+      id:       'productB',
+      name:     isEn ? C.productB.nameEn : C.productB.nameKo,
+      price:    isEn ? `$${C.productB.priceEn}` : `₩${C.productB.priceKo.toLocaleString()}`,
+      pricesub: perLabel,
+      badge:    null,
+      features: isEn
+        ? ['Classical face-reading analysis', 'Three-page A4 report', 'Complexion & structure reading', 'Organ correspondence map']
+        : ['관상 정밀 분석 리포트', 'A4 3장 분량', '오색·오관 분석', '장부 대응 지도']
+    },
+    {
+      id:       'productC',
+      name:     isEn ? C.productC.nameEn : C.productC.nameKo,
+      price:    isEn ? `$${C.productC.priceEn}` : `₩${C.productC.priceKo.toLocaleString()}`,
+      pricesub: perLabel,
+      badge:    isEn ? 'Recommended' : '추천',
+      featured: true,
+      features: isEn
+        ? ['Full Four Pillars analysis', 'All 5 diagnostic layers', 'Annual fortune roadmap', 'Custom elemental prescription', 'Four-page A4 report']
+        : ['사주 종합 정밀 분석', 'Layer 1~5 전 영역', '연 운세 로드맵', '맞춤 오행 처방전', 'A4 4장 분량']
+    },
+    {
+      id:       'subscription',
+      name:     isEn ? C.subscription.nameEn : C.subscription.nameKo,
+      price:    isEn ? `$${C.subscription.priceEn}` : `₩${C.subscription.priceKo.toLocaleString()}`,
+      pricesub: isEn ? '/mo' : '/월',
+      badge:    isEn ? 'Premium' : '프리미엄',
+      isSub:    true,
+      features: isEn ? C.subscription.featuresEn : C.subscription.featuresKo
+    }
+  ];
+
+  grid.innerHTML = plans.map(p => `
+    <div class="plan-card${p.featured ? ' featured' : ''}${p.isSub ? ' sub-plan' : ''}${selectedPlan === p.id ? ' selected' : ''}"
+         onclick="selectPlan('${p.id}')">
+      ${p.badge ? `<div class="plan-badge">${p.badge}</div>` : ''}
+      <div class="plan-name">${p.name}</div>
+      <div class="plan-price">${p.price}</div>
+      <div class="plan-pricesub">${p.pricesub}</div>
+      <ul class="plan-features">${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+function selectPlan(id) {
+  selectedPlan = id;
+  renderPlans();
+}
+
+function switchPayTab(tab) {
+  document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+  const tabEl   = document.getElementById('tab-' + tab);
+  const panelEl = document.getElementById('panel-' + tab);
+  if (tabEl)   tabEl.classList.add('active');
+  if (panelEl) panelEl.classList.add('active');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  PHOTO PREVIEW  ██
+   ════════════════════════════════════════════════════════════════ */
+function previewPhoto(input, previewId) {
+  if (input.files && input.files[0]) {
+    const r = new FileReader();
+    r.onload = e => {
+      const img = document.getElementById(previewId);
+      if (img) { img.src = e.target.result; img.classList.add('visible'); }
+    };
+    r.readAsDataURL(input.files[0]);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  DIAGNOSIS FLOW  ██
+   ════════════════════════════════════════════════════════════════ */
+function startDiagnosis() {
+  const bd = document.getElementById('birthdate').value;
+  const L  = LOCALE[currentLang] || {};
+  if (!bd) {
+    alert((L.ui || {}).alertBirthdate || 'Please enter your date of birth.');
+    return;
+  }
+  const userData = {
+    birthdate:   bd,
+    birthTime:   document.getElementById('birth-time').value,
+    gender:      document.getElementById('gender').value,
+    bp_sys:      parseInt(document.getElementById('bp-sys').value)    || null,
+    bp_dia:      parseInt(document.getElementById('bp-dia').value)    || null,
+    pulse:       parseInt(document.getElementById('pulse').value)     || null,
+    glucose:     parseInt(document.getElementById('glucose').value)   || null,
+    weight:      parseInt(document.getElementById('weight').value)    || null,
+    height:      parseInt(document.getElementById('height').value)    || null,
+    concern:     document.getElementById('concern-area').value,
+    concernText: document.getElementById('concern-text').value,
+    email:       document.getElementById('user-email').value,
+    plan:        selectedPlan,
+    lang:        currentLang,
+    ts:          new Date().toISOString()
+  };
+
+  document.getElementById('view-input').style.display = 'none';
+  document.getElementById('loadingOverlay').classList.add('active');
+  updateStep(2);
+
+  const steps  = (L.loadingSteps || []);
+  let   idx    = 0;
+  const bar      = document.getElementById('l-bar');
+  const statusEl = document.getElementById('l-status');
+  const classicEl = document.getElementById('l-classic');
+
+  const timer = setInterval(() => {
+    if (idx < steps.length) {
+      if (statusEl)  statusEl.textContent  = steps[idx].status;
+      if (classicEl) classicEl.textContent = steps[idx].classic;
+      if (bar)       bar.style.width = ((idx + 1) / steps.length * 100) + '%';
+      idx++;
+    }
+  }, 700);
+
+  setTimeout(() => {
+    clearInterval(timer);
+    if (bar) bar.style.width = '100%';
+    const report = ENGINE.generateFromDB(userData);
+    setTimeout(() => {
+      document.getElementById('loadingOverlay').classList.remove('active');
+      /* 구독 플랜 선택 시 대시보드 표시, 그 외는 리포트 */
+      if (selectedPlan === 'subscription') {
+        showSubscriberDashboard(userData);
+      } else {
+        showReport(report, userData);
+      }
+      updateStep(4);
+    }, 400);
+  }, steps.length * 700 + 500);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  ENGINE CORE  ██
+   ════════════════════════════════════════════════════════════════ */
+const ENGINE = {
+
+  generateFromDB(ud) {
+    const DB   = KNOWLEDGE_DB_INLINE;
+    const L    = currentLang;
+    const birth = new Date(ud.birthdate);
+    const elements    = this.calcElements(birth, ud.gender);
+    const healthData  = this.analyzeHealth(ud);
+    const yr          = new Date().getFullYear();
+    const yearFortune = (DB.timing[yr] || DB.timing[2026])[L];
+    const concern     = DB.concerns[ud.concern][L];
+    const curation    = (DB.curation[ud.concern] || DB.curation.default)[L];
+    return { elements, healthData, yearFortune, concern, curation,
+             physio: DB.physiognomy[L], lang: L, userData: ud };
+  },
+
+  /* 오행 계산 — 천간 기반 시연용 (마스터가 정밀 로직으로 교체 가능) */
+  calcElements(birth, gender) {
+    const y = birth.getFullYear();
+    const m = birth.getMonth() + 1;
+    const d = birth.getDate();
+    const stemEls = ['metal','metal','water','water','wood','wood','fire','fire','earth','earth'];
+    const dominant = stemEls[((y - 4) % 10 + 10) % 10];
+    const raw = {
+      wood:  20 + (m % 5) * 7  + (d % 6) * 3,
+      fire:  15 + ((y+2) % 5) * 8 + (m % 4) * 4,
+      earth: 22 + (d % 6) * 5  + (m % 3) * 5,
+      metal: 18 + ((y+1) % 4) * 7 + (d % 5) * 4,
+      water: 14 + (y % 6) * 6  + (d % 7) * 3
+    };
+    const total = Object.values(raw).reduce((a,b) => a + b, 0);
+    const scores = {};
+    Object.keys(raw).forEach(k => scores[k] = Math.round(raw[k] / total * 100));
+    return { scores, dominant };
+  },
+
+  analyzeHealth(ud) {
+    const DB = KNOWLEDGE_DB_INLINE;
+    const L  = currentLang;
+    const results = [];
+    if (ud.bp_sys && ud.bp_dia) {
+      let cat;
+      if      (ud.bp_sys < 90 || ud.bp_dia < 60) cat = 'low';
+      else if (ud.bp_sys < 120 && ud.bp_dia < 80) cat = 'normal';
+      else if (ud.bp_sys < 140 && ud.bp_dia < 90) cat = 'elevated';
+      else                                          cat = 'high';
+      results.push({ type: 'bp', data: DB.health.blood_pressure[cat][L] });
+    }
+    if (ud.glucose) {
+      let cat;
+      if      (ud.glucose < 100) cat = 'normal';
+      else if (ud.glucose < 126) cat = 'prediabetic';
+      else                        cat = 'high';
+      results.push({ type: 'glucose', data: DB.health.glucose[cat][L] });
+    }
+    if (ud.weight && ud.height) {
+      const bmi = ud.weight / Math.pow(ud.height / 100, 2);
+      results.push({ type: 'bmi', value: bmi.toFixed(1) });
+    }
+    return results;
+  },
+
+  /* AI 연동 인터페이스 (추후 활성화) */
+  callAI(ud, dbReport) {
+    /*
+    return fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json', 'x-api-key':'YOUR_KEY', 'anthropic-version':'2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6', max_tokens: 2000,
+        system: `Sovereign Oracle classical advisor engine. Write precise, scholarly 1-to-1 destiny reports citing Zi Ping Zhen Quan, Di Tian Sui, and Qiong Tong Bao Jian.`,
+        messages: [{ role: 'user', content: JSON.stringify({ ud, dbReport, lang: currentLang }) }]
+      })
+    }).then(r => r.json()).then(d => ({ ...dbReport, aiText: d.content[0].text }));
+    */
+    return Promise.resolve(dbReport);
+  }
+};
+
+/* ════════════════════════════════════════════════════════════════
+   ██  REPORT RENDERER  ██
+   ════════════════════════════════════════════════════════════════ */
+function showReport(rpt, ud) {
+  const L    = LOCALE[currentLang] || {};
+  const ui   = L.ui || {};
+  const ch   = ui.reportChapters || {};
+  const DB   = KNOWLEDGE_DB_INLINE;
+  const el   = rpt.elements;
+  const birth = new Date(ud.birthdate);
+  const age   = new Date().getFullYear() - birth.getFullYear();
+  const isEn  = currentLang === 'en';
+
+  const elNamesKo = { wood:'목(木)', fire:'화(火)', earth:'토(土)', metal:'금(金)', water:'수(水)' };
+  const elNamesEn = { wood:'Wood',   fire:'Fire',   earth:'Earth', metal:'Metal',   water:'Water' };
+  const elNames   = isEn ? elNamesEn : elNamesKo;
+  const domEl     = DB.elements[el.dominant][currentLang];
+  const rptId     = 'SO-' + Date.now().toString(36).toUpperCase();
+  const dateStr   = new Date().toLocaleDateString(isEn ? 'en-US' : 'ko-KR', { year:'numeric', month:'long', day:'numeric' });
+  const genderTxt = ud.gender === 'male' ? (isEn ? 'Male' : '남성') : (isEn ? 'Female' : '여성');
+
+  const healthHTML = rpt.healthData.map(h => {
+    if (h.type === 'bmi') {
+      const v   = parseFloat(h.value);
+      const bmi = ui.bmiLabels || {};
+      const cat = v < 18.5 ? bmi.under : v < 25 ? bmi.normal : v < 30 ? bmi.over : bmi.obese;
+      return `<div class="health-alert ok"><span class="ha-icon">◈</span><div class="ha-text"><strong>BMI ${h.value}</strong> — ${cat}</div></div>`;
+    }
+    const d = h.data;
+    return `
+      <div class="health-alert ${d.level}">
+        <span class="ha-icon">${d.icon}</span>
+        <div class="ha-text">${d.text}<div class="ha-source">— ${d.source}</div></div>
+      </div>`;
+  }).join('');
+
+  const gaugeHTML = Object.entries(el.scores).map(([k,v]) => `
+    <div class="el-row">
+      <span class="el-name">${elNames[k]}</span>
+      <div class="el-bar-bg"><div class="el-bar-fill el-${k}" style="width:0%" data-target="${v}%"></div></div>
+      <span class="el-val">${v}%</span>
+    </div>`).join('');
+
+  const curItems = rpt.curation.map((item,i) => `
+    <div class="rx-item">
+      <div class="rx-item-num">${i+1}</div>
+      <div class="rx-item-content">
+        <div class="rx-item-label">${item.label}</div>
+        <div class="rx-item-title">${item.title}</div>
+        <div class="rx-item-reason">${item.reason}</div>
+      </div>
+      <div class="rx-item-price">${item.price}</div>
+    </div>`).join('');
+
+  const html = `
+    <div class="rpt-header">
+      <div class="rpt-stamp">${L.reportStamp || 'Sovereign Oracle Report'}</div>
+      <div class="rpt-name">${genderTxt} · ${age}${ui.ageUnit || ''} · ${birth.getFullYear()}${ui.bornUnit || ''}</div>
+      <div class="rpt-meta">${dateStr}</div>
+      <div class="rpt-id">Report ID: ${rptId}</div>
+    </div>
+
+    <div class="rpt-section">
+      <span class="rpt-section-tag">${ch.ch1 || 'Chapter I · Four Pillars'}</span>
+      <div class="layer-badge"><span class="layer-dot"></span>${ch.ch1badge || ''}</div>
+      <h3 class="rpt-section-title">${domEl.title}</h3>
+      <div class="classic-quote-box">
+        <div class="classic-quote-original">"${DB.elements[el.dominant].original}"</div>
+        <div class="classic-quote-source">— ${DB.elements[el.dominant].source}</div>
+      </div>
+      <div class="rpt-body"><p>${domEl.desc}</p></div>
+      <div class="element-gauges" id="gauges">${gaugeHTML}</div>
+      <div class="rpt-body" style="margin-top:14px"><p>${domEl.prescription}</p></div>
+    </div>
+
+    ${rpt.healthData.length > 0 ? `
+    <div class="rpt-section">
+      <span class="rpt-section-tag">${ch.ch2 || 'Chapter II · Biometrics'}</span>
+      <div class="layer-badge"><span class="layer-dot"></span>${ch.ch2badge || ''}</div>
+      <h3 class="rpt-section-title">${ch.ch2title || 'Biometric Analysis'}</h3>
+      ${healthHTML}
+    </div>` : ''}
+
+    <div class="rpt-section">
+      <span class="rpt-section-tag">${ch.ch3 || 'Chapter III · Face & Palm'}</span>
+      <div class="layer-badge"><span class="layer-dot"></span>${ch.ch3badge || ''}</div>
+      <h3 class="rpt-section-title">${rpt.physio.title}</h3>
+      <div class="classic-quote-box">
+        <div class="classic-quote-original">${ch.physioQuote || ''}</div>
+        <div class="classic-quote-source">— ${ch.physioQuoteSource || ''}</div>
+      </div>
+      <div class="rpt-body"><p>${rpt.physio.desc}</p></div>
+      <div class="classic-quote-box"><div class="classic-quote-text">${rpt.physio.note}</div></div>
+    </div>
+
+    <div class="rpt-section">
+      <span class="rpt-section-tag">${ch.ch4 || 'Chapter IV · Fortune & Prescription'}</span>
+      <div class="layer-badge"><span class="layer-dot"></span>${ch.ch4badge || ''}</div>
+      <h3 class="rpt-section-title">${rpt.yearFortune.headline} · ${rpt.yearFortune.energy}</h3>
+      <div class="rpt-body"><p>${rpt.yearFortune.desc}</p></div>
+      <div style="margin-top:20px">
+        <div style="font-family:var(--font-display);font-size:11px;letter-spacing:.14em;color:var(--gold-400);text-transform:uppercase;margin-bottom:10px;font-style:italic">${rpt.concern.title}</div>
+        <div class="rpt-body"><p>${rpt.concern.content}</p></div>
+      </div>
+      <div class="rx-grid">
+        <div class="rx-card"><div class="rx-icon">🌿</div><div class="rx-title">${ch.dietaryRx || 'Dietary Rx'}</div><div class="rx-text">${domEl.prescription}</div></div>
+        <div class="rx-card"><div class="rx-icon">📿</div><div class="rx-title">${ch.recommended || 'Recommended'}</div><div class="rx-text">${domEl.remedy}</div></div>
+      </div>
+    </div>
+
+    <div class="prescription-block">
+      <div class="rx-header-bar">
+        <div class="rx-header-title">${ch.masterRxTitle || 'Master Prescription'}</div>
+        <div class="rx-header-stamp">${ch.rxStamp || 'Prescription'}</div>
+      </div>
+      <div class="rx-items">${curItems}</div>
+      <div class="rx-cta-row">
+        <button class="btn-rx-pay" onclick="PAYMENT.initGateway({plan:'${selectedPlan}'})">
+          ${ch.proceedPayment || 'Purchase'}
+        </button>
+        <button class="btn-rx-consult" onclick="PAYMENT.initGateway({plan:'subscription'})">
+          ${ch.bookConsult || 'Book Consultation'}
+        </button>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <div class="share-title">${ui.shareTitle || 'Share Your Reading'}</div>
+      <div class="share-btns">
+        <button class="share-btn" onclick="doShare('kakao')">💬 KakaoTalk</button>
+        <button class="share-btn" onclick="doShare('instagram')">📷 Instagram</button>
+        <button class="share-btn" onclick="doShare('link')">🔗 ${isEn ? 'Copy Link' : '링크 복사'}</button>
+        <button class="share-btn" onclick="window.print()">🖨 PDF</button>
+      </div>
+    </div>`;
+
+  const rc = document.getElementById('view-report');
+  if (rc) { rc.innerHTML = html; rc.classList.add('visible'); }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  setTimeout(() => {
+    document.querySelectorAll('.el-bar-fill').forEach(b => {
+      b.style.width = b.getAttribute('data-target');
+    });
+  }, 300);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  SUBSCRIBER DASHBOARD  ██
+   ════════════════════════════════════════════════════════════════ */
+function showSubscriberDashboard(ud) {
+  const isEn   = currentLang === 'en';
+  const birth   = new Date(ud.birthdate);
+  const today   = new Date();
+  const sets    = generateLotteryNumbers(birth);
+  const dailyEl = getDailyElement(today, birth);
+
+  const labels = isEn
+    ? { fortune:'Fortune', direction:'Direction', color:'Color', workplace:'Workplace', food:'Food', health:'Health Guide' }
+    : { fortune:'오늘의 운세', direction:'행운 방향', color:'행운 칼러', workplace:'직장 인간관계', food:'권장 음식', health:'건강 처방' };
+
+  const dailyData = generateDailyData(today, birth, isEn);
+
+  const html = `
+    <div class="sub-header">
+      <div class="sub-badge"><span class="sub-badge-dot"></span>${isEn ? 'Premium Member' : '프리미엄 구독'}</div>
+      <div class="rpt-name">${isEn ? 'Daily Life Care Dashboard' : '오늘의 라이프 케어'}</div>
+      <div class="rpt-meta">${today.toLocaleDateString(isEn ? 'en-US' : 'ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'long' })}</div>
+    </div>
+
+    <div class="daily-grid">
+      <div class="daily-card"><div class="daily-card-icon">☀</div><div class="daily-card-label">${labels.fortune}</div><div class="daily-card-value">${dailyData.fortune}</div><div class="daily-card-sub">${dailyData.fortuneSub}</div></div>
+      <div class="daily-card"><div class="daily-card-icon">🧭</div><div class="daily-card-label">${labels.direction}</div><div class="daily-card-value">${dailyData.direction}</div><div class="daily-card-sub">${dailyData.directionSub}</div></div>
+      <div class="daily-card"><div class="daily-card-icon">🎨</div><div class="daily-card-label">${labels.color}</div><div class="daily-card-value">${dailyData.color}</div><div class="daily-card-sub">${dailyData.colorSub}</div></div>
+      <div class="daily-card"><div class="daily-card-icon">🤝</div><div class="daily-card-label">${labels.workplace}</div><div class="daily-card-value">${dailyData.workplace}</div><div class="daily-card-sub">${dailyData.workplaceSub}</div></div>
+      <div class="daily-card"><div class="daily-card-icon">🍃</div><div class="daily-card-label">${labels.food}</div><div class="daily-card-value">${dailyData.food}</div><div class="daily-card-sub">${dailyData.foodSub}</div></div>
+      <div class="daily-card"><div class="daily-card-icon">💊</div><div class="daily-card-label">${labels.health}</div><div class="daily-card-value">${dailyData.health}</div><div class="daily-card-sub">${dailyData.healthSub}</div></div>
+    </div>
+
+    <div class="lottery-block">
+      <div class="lottery-title">🍀 ${isEn ? 'Weekly Lucky Numbers — 2 Sets' : '이번 주 행운의 복권 번호 2조합'}</div>
+      <div class="lottery-sets">
+        ${sets.map((set, si) => `
+          <div class="lottery-set">
+            <span class="lottery-set-label">${isEn ? 'Set' : '조합'} ${si + 1}</span>
+            ${set.map(n => `<div class="lottery-num">${n}</div>`).join('')}
+          </div>`).join('')}
+      </div>
+      <p style="font-family:var(--font-display);font-size:10px;color:var(--text-muted);font-style:italic;margin-top:12px;text-align:center">
+        ${isEn ? '* Generated from your elemental energy field. Refreshes every Monday.' : '* 역학 자장 코드 기반 생성. 매주 월요일 갱신됩니다.'}
+      </p>
+    </div>`;
+
+  let dash = document.getElementById('sub-dashboard');
+  if (!dash) {
+    dash = document.createElement('div');
+    dash.id = 'sub-dashboard';
+    dash.className = 'sub-dashboard';
+    document.getElementById('view-report').after(dash);
+  }
+  dash.innerHTML = html;
+  dash.classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── 로또 번호 생성 — 역학 자장 코드 기반 ── */
+function generateLotteryNumbers(birth) {
+  const y = birth.getFullYear(), m = birth.getMonth() + 1, d = birth.getDate();
+  const week = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 604800000);
+  const seed1 = (y * 13 + m * 7  + d * 3  + week * 11) % 37;
+  const seed2 = (y * 17 + m * 11 + d * 7  + week * 13) % 37;
+  function genSet(seed) {
+    const nums = new Set();
+    let s = seed;
+    while (nums.size < 6) { s = (s * 6364136223846793005n !== undefined ? s : (s * 1664525 + 1013904223) % 100000) % 45 + 1; nums.add(Math.abs(s) % 45 + 1); }
+    return [...nums].slice(0,6).sort((a,b) => a - b);
+  }
+  return [genSet(seed1 + 1), genSet(seed2 + 7)];
+}
+
+/* ── 오늘의 오행 데이터 생성 ── */
+function getDailyElement(today, birth) {
+  const elOrder = ['wood','fire','earth','metal','water'];
+  const dayIdx = (today.getDay() + birth.getDate()) % 5;
+  return elOrder[dayIdx];
+}
+
+function generateDailyData(today, birth, isEn) {
+  const el    = getDailyElement(today, birth);
+  const dayN  = today.getDay();
+  const dirs  = isEn
+    ? ['East','Southeast','South','Southwest','West','Northwest','North','Northeast']
+    : ['동쪽','동남쪽','남쪽','남서쪽','서쪽','북서쪽','북쪽','북동쪽'];
+  const elColors = {
+    wood:  isEn ? 'Forest Green · Sage'  : '초록 · 청록',
+    fire:  isEn ? 'Crimson · Gold'       : '붉은 · 금빛',
+    earth: isEn ? 'Amber · Ochre'        : '황색 · 갈색',
+    metal: isEn ? 'Silver · Pearl White' : '은백 · 흰색',
+    water: isEn ? 'Deep Blue · Indigo'   : '짙은 청색 · 남색'
+  };
+  const elFoods = {
+    wood:  isEn ? 'Leafy greens, sour fruits, green tea'    : '녹색 채소, 신맛 과일, 녹차',
+    fire:  isEn ? 'Bitter melon, red berries, ginger tea'   : '여주, 붉은 베리류, 생강차',
+    earth: isEn ? 'Whole grains, root vegetables, miso'     : '잡곡밥, 뿌리채소, 된장국',
+    metal: isEn ? 'Pear, white radish, pungent herbs'       : '배, 무, 도라지',
+    water: isEn ? 'Seaweed, black beans, blueberries'       : '미역, 검은콩, 블루베리'
+  };
+  const fortunes = isEn
+    ? ['A day for measured forward motion — commit before noon.','Creative energy peaks — ideal for new conversations.','Consolidation favored — review before advancing.','Sharp analytical clarity — numbers and decisions flow.','Inner wisdom surfaces — trust your instincts today.']
+    : ['신중한 전진의 날 — 오전 중 결단하십시오.','창의적 에너지가 정점 — 새로운 대화에 좋습니다.','통합이 유리한 날 — 전진 전 검토하십시오.','날카로운 분석력 — 숫자와 결정이 원활합니다.','내면의 지혜가 떠오르는 날 — 직관을 믿으십시오.'];
+  const workplaces = isEn
+    ? ['Collaborate over compete today.','Lead with clarity, not volume.','Listen more than you speak.','Make the decision — delay costs more.','One quiet conversation outweighs ten emails.']
+    : ['경쟁보다 협력이 유리합니다.','명확함으로 리드하십시오.','말보다 경청이 힘이 됩니다.','결단하십시오 — 지체가 더 큰 손실입니다.','조용한 대화 하나가 열 개의 이메일보다 강합니다.'];
+
+  return {
+    fortune:      fortunes[dayN % 5],
+    fortuneSub:   isEn ? `${el.charAt(0).toUpperCase() + el.slice(1)} element governs today` : `오늘은 ${el === 'wood' ? '목기' : el === 'fire' ? '화기' : el === 'earth' ? '토기' : el === 'metal' ? '금기' : '수기'} 지배`,
+    direction:    dirs[dayN % dirs.length],
+    directionSub: isEn ? 'Your auspicious orientation today' : '오늘의 행운 방향',
+    color:        elColors[el],
+    colorSub:     isEn ? 'Wear or surround yourself with this' : '착용하거나 가까이 두십시오',
+    workplace:    workplaces[dayN % 5],
+    workplaceSub: isEn ? 'Classical relational guidance' : '고전 인간관계 처방',
+    food:         elFoods[el],
+    foodSub:      isEn ? 'Align your diet with today\'s element' : '오늘의 오행 식이 처방',
+    health:       isEn ? 'Hydrate well · 10-min breathing exercise · Lights out by 11 PM' : '충분한 수분 · 복식호흡 10분 · 오후 11시 취침',
+    healthSub:    isEn ? 'Daily elemental health protocol' : '일일 오행 건강 처방'
+  };
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  STEP BAR  ██
+   ════════════════════════════════════════════════════════════════ */
+function updateStep(n) {
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('s' + i);
+    if (!el) return;
+    el.classList.remove('active', 'done');
+    if      (i < n) el.classList.add('done');
+    else if (i === n) el.classList.add('active');
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  SHARE  ██
+   ════════════════════════════════════════════════════════════════ */
+function doShare(platform) {
+  const L = LOCALE[currentLang] || {};
+  const url = window.location.href;
+  if (platform === 'link' || platform === 'instagram') {
+    navigator.clipboard.writeText(url)
+      .then(() => alert((L.ui || {}).linkCopied || 'Copied!'))
+      .catch(() => prompt('Copy:', url));
+    return;
+  }
+  if (platform === 'kakao') window.open('https://story.kakao.com/share?url=' + encodeURIComponent(url), '_blank');
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ██  PAYMENT LAYER  ██
+   ── 언어에 따라 KG이니시스 / Airwallex 자동 라우팅 ──
+   ════════════════════════════════════════════════════════════════ */
+const PAYMENT = {
+
+  /* 언어 기반 게이트웨이 자동 선택 */
+  initGateway(order) {
+    if (currentLang === 'en') {
+      this.initAirwallex(order);
+    } else {
+      this.initInicis(order);
+    }
+  },
+
+  /* ── KG이니시스 (국내 KO) ── */
+  initInicis(order) {
+    const C   = SOVEREIGN_CONFIG.payment.inicis;
+    const cfg = SOVEREIGN_CONFIG;
+    const prod = cfg[order.plan] || cfg.productC;
+    const amount = prod.priceKo;
+
+    if (C.testMode) {
+      alert(`[KG이니시스] 테스트 모드\n상품: ${prod.nameKo}\n금액: ₩${amount.toLocaleString()}\n실 MID 입력 후 즉시 활성화됩니다.`);
+      return;
+    }
+    /* 실 연동:
+    const IMP = window.IMP;
+    IMP.init(C.mid);
+    IMP.request_pay({
+      pg: 'html5_inicis', pay_method: 'card',
+      merchant_uid: 'SO_' + Date.now(),
+      name: prod.nameKo, amount,
+      buyer_email: document.getElementById('user-email').value
+    }, rsp => rsp.success ? this.onSuccess(rsp) : this.onFail(rsp));
+    */
+  },
+
+  /* ── Airwallex (해외 EN) ── */
+  initAirwallex(order) {
+    const C   = SOVEREIGN_CONFIG.payment.airwallex;
+    const cfg = SOVEREIGN_CONFIG;
+    const prod = cfg[order.plan] || cfg.productC;
+    const amount = prod.priceEn;
+
+    if (C.testMode) {
+      alert(`[Airwallex] Test Mode\nProduct: ${prod.nameEn}\nAmount: $${amount}\nEnter live credentials to activate.`);
+      return;
+    }
+    /* 실 연동:
+    Airwallex.init({ env: C.env, origin: window.location.origin });
+    const intent = await fetch('/api/create-payment-intent', {
+      method: 'POST',
+      body: JSON.stringify({ amount: amount * 100, currency: 'USD', plan: order.plan })
+    }).then(r => r.json());
+    const el = Airwallex.createElement('card');
+    el.mount('#aw-element');
+    */
+  },
+
+  onSuccess(r) { console.log('결제 성공', r); },
+  onFail(r) {
+    const L = LOCALE[currentLang] || {};
+    alert((L.ui || {}).paymentFail || 'Payment failed. Please try again.');
+  }
+};
+
+/* ════════════════════════════════════════════════════════════════
+   ██  PWA  ██
+   ════════════════════════════════════════════════════════════════ */
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); pwaPrompt = e;
+  setTimeout(() => {
+    const b = document.getElementById('pwaBanner');
+    if (b) b.classList.add('visible');
+  }, 4000);
+});
+
+function installPWA() {
+  const L = LOCALE[currentLang] || {};
+  if (pwaPrompt) {
+    pwaPrompt.prompt();
+    pwaPrompt.userChoice.then(() => { pwaPrompt = null; closePWA(); });
+  } else {
+    alert((L.ui || {}).safariPWA || 'Safari: Share → Add to Home Screen');
+  }
+}
+function closePWA() {
+  const b = document.getElementById('pwaBanner');
+  if (b) b.classList.remove('visible');
+}
+
+if ('serviceWorker' in navigator) {
+  const sw = `const C='so-v22';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(['/']))));self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw], { type: 'application/javascript' }))).catch(() => {});
+}
+
+/* ── PWA 매니페스트 인라인 주입 ── */
+(function() {
+  const m = {
+    name: 'Sovereign Oracle', short_name: 'Sovereign Oracle',
+    start_url: '/', display: 'standalone',
+    background_color: '#0a0a0a', theme_color: '#0a0a0a',
+    orientation: 'portrait',
+    icons: [
+      { src: 'https://yourdomain.com/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { src: 'https://yourdomain.com/icon-512.png', sizes: '512x512', type: 'image/png' }
+    ]
+  };
+  const l = document.createElement('link');
+  l.rel  = 'manifest';
+  l.href = URL.createObjectURL(new Blob([JSON.stringify(m)], { type: 'application/json' }));
+  document.head.appendChild(l);
+})();
+
+/* ── 탭 가시성 변화 ── */
+document.addEventListener('visibilitychange', () => {
+  const L = LOCALE[currentLang] || {};
+  document.title = document.hidden
+    ? ((L.ui || {}).pwaTitle    || 'Sovereign Oracle awaits...')
+    : ((L.ui || {}).tabTitle    || 'Sovereign Oracle — Precision Destiny Analysis');
+});
+
+/* ════════════════════════════════════════════════════════════════
+   ██  KNOWLEDGE_DB_INLINE  ██
+   역학 연산 엔진용 인라인 지식 DB (locale.json 로드 실패 시 폴백)
+   ════════════════════════════════════════════════════════════════ */
+const KNOWLEDGE_DB_INLINE = {
+  elements: {
+    wood: {
+      original: "木曰曲直，仁之象也，春生之氣旺",
+      source: "Zi Ping Zhen Quan · Di Tian Sui",
+      ko: {
+        title: "목기(木氣) — 생장과 도전의 기운",
+        desc: "목기(木氣)가 사주의 핵심을 이루고 있습니다. 자평진전에서는 '木曰曲直'이라 하여 나무는 굽어지면서도 반드시 하늘을 향해 곧게 자라는 성질이 있다고 했습니다. 이는 귀하가 어떤 역경 속에서도 결국 전진하는 기질을 타고났음을 의미합니다. 간(肝)과 담(膽)이 이 기운을 주관하니, 결단력과 추진력이 강한 반면 조급함으로 인한 간 기능의 과부하를 경계해야 합니다.",
+        prescription: "신맛 식재료(매실, 식초, 레몬)로 간 기운을 조화시키고, 새벽 5~7시 묘시(卯時)의 산책으로 목기를 활성화하십시오.",
+        remedy: "간 해독 허브티(밀크씨슬), 녹색 채소 위주의 식단"
+      },
+      en: {
+        title: "Wood Element — Growth & Initiative",
+        desc: "Wood energy forms the central axis of your birth chart. The classical text Zi Ping Zhen Quan states: 'Wood bends and straightens — the image of Benevolence.' Like a tree that yields to the wind yet always grows toward light, you are constitutionally driven to advance through adversity. The Liver and Gallbladder govern this element; the same vital force that fuels your ambition may overtax these organs when unrestrained.",
+        prescription: "Sour foods — lemon, apple cider vinegar, plum — harmonize Liver energy. Morning walks between 5 and 7 AM activate Wood at its natural daily peak.",
+        remedy: "Milk thistle liver support, leafy green-dominant diet, early morning movement"
+      }
+    },
+    fire: {
+      original: "火曰炎上，禮之象也，夏長之氣盛",
+      source: "Di Tian Sui · Huangdi Neijing",
+      ko: {
+        title: "화기(火氣) — 열정과 소통의 기운",
+        desc: "화기(火氣)가 사주의 근간을 형성합니다. 적천수에서는 '火曰炎上'이라 하여 불은 위를 향해 타오르며 만물을 밝히는 성질이 있다고 했습니다. 이 기운은 귀하에게 뛰어난 카리스마와 표현력을 부여하지만, 황제내경에서 경고하듯 '心火亢盛'의 상태, 즉 내면의 불이 지나치게 타오를 때 수면 장애, 혈압 상승, 초조함이 동반됩니다.",
+        prescription: "쓴맛 식재료(여주, 씀바귀, 녹차)로 심화를 진정시키고, 오후 11시 이전 취침으로 심장 기운이 회복되는 자시(子時)를 확보하십시오.",
+        remedy: "산조인(酸棗仁) 차, 심장 강화 유산소 운동(속보 30분)"
+      },
+      en: {
+        title: "Fire Element — Passion & Expression",
+        desc: "Fire dominates your natal chart. The Di Tian Sui teaches: 'Fire blazes upward and illuminates all it touches.' This grants extraordinary charisma and communicative power — you naturally draw others into your orbit. Yet the Huangdi Neijing warns of excess Heart Fire: when unchecked, this manifests as insomnia, rising blood pressure, and the restlessness of a mind that cannot cease.",
+        prescription: "Bitter foods — bitter melon, green tea, dandelion — calm the Heart. Secure sleep before 11 PM to restore the deep quiet the spirit requires.",
+        remedy: "Sour jujube seed tea, brisk walking thirty minutes daily, deliberate evening stillness"
+      }
+    },
+    earth: {
+      original: "土爰稼穡，信之象也，四季末旺",
+      source: "Zi Ping Zhen Quan · Dongui Bogam",
+      ko: {
+        title: "토기(土氣) — 중심과 포용의 기운",
+        desc: "토기(土氣)는 사주 내에서 중간 조정자 역할을 합니다. 자평진전은 '土爰稼穡'이라 하여 땅은 씨앗을 받아 열매로 돌려보내는 신뢰와 포용의 상징이라 했습니다. 토기는 비장(脾)과 위장(胃)을 주관하며, 동의보감에서는 이 기운이 약해질 때 소갈증(消渴症), 즉 오늘날의 당뇨 전단계 증상이 나타날 수 있다고 경고합니다.",
+        prescription: "단맛 과식을 줄이고, 규칙적인 식사 시간을 지키며 잡곡밥으로 비위를 보강하십시오. 식후 15분 가벼운 산책이 필수입니다.",
+        remedy: "황기(黃芪) 달임물, 귀리·보리 위주의 식단, 규칙적 식사"
+      },
+      en: {
+        title: "Earth Element — Stability & Nurturing",
+        desc: "Earth acts as the mediating center of your chart — the element that receives and transforms all others. Zi Ping Zhen Quan states: 'Earth sows and reaps — the image of Faithfulness.' Earth governs the Spleen and Stomach, the digestive axis of classical medicine. The Dongui Bogam warns that when Earth weakens, metabolic wasting — the classical precursor to modern diabetes — begins its quiet advance.",
+        prescription: "Reduce refined sugars. Maintain consistent meal timing. Choose whole grains over refined carbohydrates. A fifteen-minute walk after meals is the most direct prescription.",
+        remedy: "Astragalus root decoction, oat and barley staples, regular mealtimes without exception"
+      }
+    },
+    metal: {
+      original: "金曰從革，義之象也，秋收之氣肅",
+      source: "Qiong Tong Bao Jian · Di Tian Sui",
+      ko: {
+        title: "금기(金氣) — 정밀함과 수확의 기운",
+        desc: "금기(金氣)가 사주를 주도합니다. 궁통보감에서는 '金曰從革'이라 하여 금속은 불에 녹아 새로운 형태로 재탄생할 때 비로소 진정한 가치를 발한다고 했습니다. 금기는 폐(肺)와 대장(大腸)을 주관하며, 이 기운이 강한 시기엔 분석력과 심미안이 탁월해지지만, 과잉 시 호흡기 취약, 피부 트러블, 지나친 완벽주의로 완성이 지연되는 그림자가 드러납니다.",
+        prescription: "매운맛 식재료(생강, 도라지, 배)로 폐 기운을 보강하고, 심호흡 운동(복식호흡 10분)으로 폐활량을 키우십시오.",
+        remedy: "도라지·배 달임물, 폐 기능 강화 호흡 운동, 건조한 환경 주의"
+      },
+      en: {
+        title: "Metal Element — Precision & Harvest",
+        desc: "Metal governs your chart. The Qiong Tong Bao Jian states: 'Metal yields to the forge and becomes something of greater worth.' This is the element of transformation through pressure — your precision and refined judgment are its gifts. Metal rules the Lungs and Large Intestine. The shadow of a Metal-dominant chart: respiratory sensitivity, skin vulnerabilities, and a perfectionism that, unchecked, delays completion indefinitely.",
+        prescription: "Pungent foods — ginger, balloon flower root, pear — nourish and open the Lungs. Ten minutes of diaphragmatic breathing daily is the simplest and most effective protocol.",
+        remedy: "Platycodon and pear decoction, daily breathing practice, attention to air quality and humidity"
+      }
+    },
+    water: {
+      original: "水曰潤下，智之象也，冬藏之氣深",
+      source: "Di Tian Sui · Huangdi Neijing",
+      ko: {
+        title: "수기(水氣) — 지혜와 생명력의 근원",
+        desc: "수기(水氣)가 사주의 깊은 곳에 자리합니다. 적천수는 '水曰潤下'라 하여 물은 가장 낮은 곳으로 흘러 온 땅을 적시는 지혜와 생명력의 근원이라 했습니다. 수기는 신장(腎)과 방광(膀胱)을 주관하며, 황제내경에서는 신장을 '先天之本(선천지본)', 즉 생명력의 원천이라 규정합니다. 수기가 부족해지면 만성 피로, 요통, 성기능 저하, 근거 없는 공포감이 찾아옵니다.",
+        prescription: "짠맛 식재료(미역, 검은콩, 해조류)로 신장 정기를 보충하고, 매일 족욕(15분)과 오후 11시 이전 취침으로 신수(腎水)를 회복하십시오.",
+        remedy: "검은콩·검은깨 섭취, 족욕, 조기 취침, 수분 충분히 섭취"
+      },
+      en: {
+        title: "Water Element — Wisdom & Life Force",
+        desc: "Water runs deep within your Four Pillars. The Di Tian Sui teaches: 'Water flows to the lowest place and nourishes all living things.' The Huangdi Neijing calls the Kidneys the Origin of Prenatal Essence — the very root of the vitality inherited at birth. When Water Qi depletes, the signs are unmistakable: chronic fatigue, lower back pain, a pervasive anxiety without clear cause.",
+        prescription: "Mineral-rich, salty foods — seaweed, black beans, miso — replenish Kidney essence. Daily foot baths and sleep before 11 PM restore Water's depth and the body's regenerative cycle.",
+        remedy: "Black bean and sesame intake, evening foot baths, consistent early sleep, generous hydration"
+      }
+    }
+  },
+
+  health: {
+    blood_pressure: {
+      normal:   { ko: { level:"ok", icon:"✦", text:"혈압이 이상적인 범위에 있습니다. 황제내경의 관점에서 이는 화기(心火)와 수기(腎水)가 '수화기제(水火旣濟)', 즉 상호 제어하며 순환하는 균형 상태임을 의미합니다. 이 상태를 유지하는 것이 핵심 처방입니다.", source:"黃帝內經 素問 靈蘭秘典論 · 水火旣濟"}, en:{ level:"ok", icon:"✦", text:"Blood pressure is within the ideal range. In classical terms, this reflects Water-Fire Harmony — the mutual regulation of Heart Fire and Kidney Water sustaining healthy circulation. The prescription is preservation of this equilibrium.", source:"Huangdi Neijing, Su Wen · Water-Fire Harmony Theory"} },
+      elevated: { ko: { level:"warn", icon:"▲", text:"혈압이 다소 높은 상태입니다. 황제내경은 이 패턴을 '간양상항(肝陽上亢)', 즉 간의 양 기운이 위로 치솟아 혈압을 높이는 상태로 진단합니다. 미해결된 스트레스와 과다한 나트륨 섭취가 주요 원인입니다.", source:"黃帝內經 素問 至眞要大論 · 肝陽上亢論"}, en:{ level:"warn", icon:"▲", text:"Blood pressure is elevated. The Huangdi Neijing identifies this pattern as Liver Yang Rising — the Liver's Yang force surging upward and pressurizing the blood vessels. Unresolved stress and excess sodium are the primary drivers to address.", source:"Huangdi Neijing, Su Wen · Liver Yang Rising"} },
+      high:     { ko: { level:"critical", icon:"⚠", text:"혈압이 임상적으로 높은 수준입니다. 반드시 의료 전문가와 상담하십시오. 명리학적으로 현재 '화수미제(火水未濟)' 상태로 혈맥의 순환이 실조된 시기입니다.", source:"黃帝內經 靈樞 脈度篇 · 火水未濟"}, en:{ level:"critical", icon:"⚠", text:"Blood pressure requires immediate medical attention. Consult a physician. This reflects Fire-Water Discord — Fire overwhelming Water's regulatory capacity. Emotional regulation, rest, and immediate dietary change are the most urgent prescriptions.", source:"Huangdi Neijing, Ling Shu · Fire-Water Discord Theory"} },
+      low:      { ko: { level:"warn", icon:"▽", text:"혈압이 낮습니다. 동의보감은 이를 '기혈부족(氣血不足)', 즉 기와 혈이 모두 부족한 상태로 진단합니다. 규칙적인 식사와 단백질·철분 보충이 최우선 처방입니다.", source:"東醫寶鑑 內景篇 氣門 · 血門"}, en:{ level:"warn", icon:"▽", text:"Blood pressure is low. The Dongui Bogam diagnoses this as Vital Energy and Blood Deficiency — insufficient force to sustain circulation. Regular meals, protein, and iron supplementation are the primary prescriptions.", source:"Dongui Bogam, Internal Chapters · Qi-Blood Deficiency"} }
+    },
+    glucose: {
+      normal:      { ko:{ level:"ok", icon:"✦", text:"혈당이 정상 범위(70~99 mg/dL)에 있습니다. 비장(脾)과 위장(胃)의 토기(土氣)가 안정적으로 기능하고 있음을 의미합니다.", source:"東醫寶鑑 內景篇 消渴門"}, en:{ level:"ok", icon:"✦", text:"Blood glucose is within normal range. The Spleen-Stomach metabolic axis — governed by Earth element — is functioning with stability. Maintain this equilibrium through consistent dietary discipline.", source:"Dongui Bogam · Metabolic Disorders Chapter"} },
+      prediabetic: { ko:{ level:"warn", icon:"▲", text:"혈당이 당뇨 전단계(100~125 mg/dL) 범위입니다. 동의보감은 이 상태를 소갈(消渴)의 초기 징후로 보며, 토기(土氣)의 조절 기능이 과부하 상태임을 경고합니다. '脾胃者，後天之本也' — 비위는 후천의 근본이니 이 경고를 가볍게 여기지 마십시오.", source:"東醫寶鑑 消渴門 · 脾胃論"}, en:{ level:"warn", icon:"▲", text:"Pre-diabetic range detected. The Dongui Bogam identifies this as early metabolic wasting — the Spleen-Stomach regulatory axis under sustained overload. The classical teaching is clear: 'The Spleen and Stomach are the foundation of acquired vitality.' Do not take this signal lightly.", source:"Dongui Bogam · Spleen-Stomach Treatise"} },
+      high:        { ko:{ level:"critical", icon:"⚠", text:"혈당이 126 mg/dL 이상으로 임상적 주의가 필요합니다. 즉시 의료 전문가와 상담하십시오. 토기(土氣)의 '습열(濕熱)' 상태, 즉 비위에 과도한 열과 습기가 쌓여 조절 기능이 현저히 저하된 것으로 판단됩니다.", source:"東醫寶鑑 消渴門 · 濕熱論"}, en:{ level:"critical", icon:"⚠", text:"Blood glucose is 126 mg/dL or above — medical consultation is required immediately. This reflects Damp-Heat accumulation in the Earth element, severely impairing the Spleen-Stomach regulatory axis. Dietary reform must begin without delay.", source:"Dongui Bogam · Damp-Heat Theory"} }
+    }
+  },
+
+  physiognomy: {
+    ko: { title:"망진(望診) · 수상(手相) 정밀 분석", desc:"황제내경 영추 오색편의 원칙에 따라 얼굴의 오색(五色)과 오관(五官) 형세를 분석합니다. 마의신상에서는 '相者，氣之外見也', 즉 관상은 기운이 밖으로 드러난 것이라 했습니다. 업로드하신 사진은 마스터가 직접 검토하여 최종 리포트에 정밀 분석을 추가합니다.", note:"※ 마스터의 관상·수상 정밀 판독 결과는 48시간 이내 이메일로 추가 발송됩니다." },
+    en: { title:"Face Reading & Palm Analysis", desc:"Following the principles of the Huangdi Neijing Ling Shu — Five Colors Chapter, facial complexion correspondences and structural harmony are assessed. The Ma Yi Shen Xiang declares: 'Physiognomy is the outward expression of inner vital energy.' Your uploaded photographs will be personally reviewed by the Master for a detailed classical assessment.", note:"※ The Master's face and palm reading will be delivered to your email within 48 hours." }
+  },
+
+  timing: {
+    2025: {
+      ko: { headline:"2025년 을사(乙巳)년", energy:"木火 전환기", desc:"적천수에서는 사년(巳年)을 '火가 胎를 거두는 해'라 하여 새로운 씨앗이 발아를 준비하는 전환의 시기로 정의합니다. 갑진년에 뿌린 씨앗이 구체적 형태를 갖추는 시기이므로, 신중한 실행과 정밀한 판단이 요구됩니다." },
+      en: { headline:"2025 — Wood Snake", energy:"Wood to Fire Transition", desc:"The Di Tian Sui defines the Snake year as 'Fire gathering its embryo' — a year of germination, when what was planted takes its first concrete form. What you initiated in the Dragon year now demands precise cultivation and careful execution. Momentum is available; recklessness is the hazard." }
+    },
+    2026: {
+      ko: { headline:"2026년 병오(丙午)년", energy:"火 정점기", desc:"병오년은 천간(天干)과 지지(地支) 모두 화기(火氣)로 이루어진 강렬한 에너지의 해입니다. 궁통보감은 '丙火가 得令하면 그 기세가 산을 태울 듯하다'고 경고합니다. 전진하는 에너지가 강하나, 과열과 조급함이 최대 함정입니다." },
+      en: { headline:"2026 — Fire Horse", energy:"Fire at its Peak", desc:"The Fire Horse year carries both Heavenly Stem and Earthly Branch in pure Fire — the apex of yang energy in the sixty-year cycle. The Qiong Tong Bao Jian warns: 'When Bing Fire governs its season, its force could consume mountains.' This is a year of extraordinary momentum, visibility, and consequence. Unchecked impatience is the single greatest trap." }
+    }
+  },
+
+  concerns: {
+    health: {
+      ko: { title:"건강 · 체력 관리 처방", content:"몸이 먼저 신호를 보내고 있다는 것, 그리고 귀하가 그 신호를 포착했다는 것이 이미 절반의 치유입니다. 황제내경은 '不治已病，治未病'을 최고의 의술로 보았습니다 — 병이 난 뒤 치료하는 것이 아니라, 병이 나기 전에 다스리는 것이 진정한 의술이라는 뜻입니다. 귀하의 사주 오행과 현재 건강 지표를 교차 분석하여 가장 취약한 장기와 보강해야 할 기운을 명확히 제시합니다." },
+      en: { title:"Health & Vitality Prescription", content:"That your body is sending signals — and that you are attentive enough to receive them — is already half the healing. The Huangdi Neijing enshrined this as its highest medical principle: 'Do not treat illness after it arrives; cultivate the conditions that prevent it.' The cross-analysis of your birth chart and biometric data will identify precisely which organ systems need fortification and which elemental forces require balance." }
+    },
+    wealth: {
+      ko: { title:"재물 · 사업 운 분석", content:"자평진전은 '財者，我克者也'라 하여 재물은 내가 극하는 오행임을 밝혔습니다. 재물이 자연히 오는 것이 아니라, 내 기운이 재물의 기운을 제어할 수 있을 때 비로소 취할 수 있다는 뜻입니다. 지금 이 시기가 전진해야 할 때인지, 지켜봐야 할 때인지를 대운과 세운의 교차로 명확히 판단합니다." },
+      en: { title:"Wealth & Career Fortune", content:"Zi Ping Zhen Quan states: 'Wealth is the element one controls.' Fortune does not arrive unbidden — it accumulates when a person's elemental energy is capable of containing and directing it. The analysis will determine whether this moment calls for bold advance or strategic patience, reading the precise intersection of your Major Cycle and Annual Cycle to identify the quality of the current season." }
+    },
+    relationship: {
+      ko: { title:"인연 · 대인 관계 분석", content:"모든 인연에는 오행의 생극(生克) 원리가 관통합니다. 나를 생(生)해주는 기운의 사람과 함께하면 에너지가 충전되고, 나를 극(克)하는 기운의 사람과 지속적으로 함께하면 기운이 소진됩니다. 어떤 유형의 사람이 귀하에게 이로운지, 어떤 관계를 경계해야 하는지를 명리학적 근거로 제시합니다." },
+      en: { title:"Relationships & Human Connection", content:"Every relationship operates on the Five Element cycle of generation and control. Those whose elemental energies generate yours leave you replenished; those whose energies control yours deplete you over time. The analysis will identify which elemental types are genuine allies, which relationships carry friction by nature, and how to navigate both with intelligence rather than instinct alone." }
+    },
+    family: {
+      ko: { title:"가정 · 자녀 · 부모 운 분석", content:"사주 내의 육친(六親) 성분, 즉 부모 궁(印星), 자녀 궁(食傷), 배우자 궁(官·財)의 강약을 분석하여 현재 가족 관계에서 어느 부분에 에너지를 집중해야 할지, 어느 관계에서 갈등이 심화될 수 있는지 선제적으로 안내합니다." },
+      en: { title:"Family Dynamics Analysis", content:"The Six Relatives configuration within your Four Pillars encodes the Parent, Children, and Spouse positions as elemental forces. Analyzing their relative strength and interaction reveals where family energy flows freely and where friction tends to intensify — enabling proactive navigation rather than reactive management of the relationships that matter most." }
+    },
+    mindset: {
+      ko: { title:"심리 · 내면 성장 분석", content:"명리학은 동양의 심리학입니다. 사주 내 십신(十神)의 구조를 분석하면 무의식적 행동 패턴, 반복되는 선택의 이유, 심리적 강점과 그림자가 선명하게 드러납니다. '知彼知己，百戰不殆' — 자신을 아는 자가 비로소 자신을 바꿀 수 있습니다." },
+      en: { title:"Inner Psychology & Growth", content:"Four Pillars analysis is Eastern psychology at its most precise. The Ten Gods configuration reveals the unconscious behavioral patterns that repeat across a life, the reason behind recurring choices, and both the strengths and shadow tendencies encoded in the chart. The classical principle applies: 'Know yourself as fully as you know your adversary — and you will not fail.'" }
+    },
+    timing: {
+      ko: { title:"시기 · 운의 흐름 분석", content:"적천수는 '運有推移，命有常變'이라 하여 운은 반드시 이동하고 명은 그에 따라 변한다고 했습니다. 대운(大運)의 10년 흐름과 세운(歲運)의 1년 흐름이 교차하는 지점에서 귀하의 현재 계절을 정확히 진단합니다." },
+      en: { title:"Fortune Timing Analysis", content:"The Di Tian Sui states: 'Fortune is always in motion; destiny responds and transforms accordingly.' At the intersection of your ten-year Major Cycle and annual luck cycle, your current fortune season becomes precisely legible. The analysis will identify whether you are in a period of advance, consolidation, or patient preparation — and what the classical texts advise for each." }
+    }
+  },
+
+  curation: {
+    health: {
+      ko: [
+        { label:"처방 No.1", title:"마스터 지정 한방 건강 프로그램", reason:"귀하의 오행 분석 결과 수기(水氣) 보강이 시급합니다. 마스터가 직접 처방한 신장·방광 강화 한방 프로그램입니다.", price:"₩180,000", link:"#", highlight:true },
+        { label:"처방 No.2", title:"오행 맞춤 식단 가이드 (PDF)", reason:"목기 과잉에 따른 간 기능 과부하를 조절하는 신맛 기반 식단 설계. 4주 프로그램.", price:"₩45,000", link:"#" }
+      ],
+      en: [
+        { label:"Rx No.1", title:"Master-Prescribed Elemental Health Program", reason:"Your Water element requires immediate fortification. This kidney-strengthening program is directly prescribed based on your chart analysis.", price:"$135", link:"#", highlight:true },
+        { label:"Rx No.2", title:"Five Element Diet Guide (PDF)", reason:"A sour-element dietary protocol to regulate Wood excess and ease Liver overload. Four-week structured program.", price:"$35", link:"#" }
+      ]
+    },
+    wealth: {
+      ko: [
+        { label:"처방 No.1", title:"재물 운 극대화 전략 컨설팅 (1:1)", reason:"현재 대운의 흐름과 용신 분석을 바탕으로 마스터가 직접 사업 및 재물 전략을 제시합니다.", price:"₩250,000", link:"#", highlight:true }
+      ],
+      en: [
+        { label:"Rx No.1", title:"Wealth Fortune Strategy Consultation (1:1)", reason:"A private consultation with the Master, delivering wealth and career strategy grounded in your Major Cycle and favorable element analysis.", price:"$185", link:"#", highlight:true }
+      ]
+    },
+    default: {
+      ko: [
+        { label:"처방 No.1", title:"마스터 1:1 심층 상담 (30분)", reason:"분석 리포트를 토대로 마스터가 직접 귀하의 고민에 답하는 화상 상담입니다.", price:"₩150,000", link:"#", highlight:true },
+        { label:"처방 No.2", title:"소버린 오라클 연간 관리 플랜", reason:"분기별 운세 업데이트와 건강 지표 추적 관리로 1년 생애 흐름을 총괄합니다.", price:"₩480,000", link:"#" }
+      ],
+      en: [
+        { label:"Rx No.1", title:"Master 1:1 Private Consultation (30 min)", reason:"The Master addresses your specific concerns directly, in a private video consultation built on your full report analysis.", price:"$109", link:"#", highlight:true },
+        { label:"Rx No.2", title:"Annual Life Management Plan", reason:"Quarterly fortune updates, health tracking, and elemental recalibration covering the complete arc of the year ahead.", price:"$349", link:"#" }
+      ]
+    }
+  }
+};
+
+
+/* ════════════════════════════════════════════════════════════════
+   ██  INIT  ██
+   ════════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  /* locale 인라인 내장 — 비동기 fetch 불필요 */
+  KNOWLEDGE_DB = buildKnowledgeDB((LOCALE.classics || {}));
+  applyLocale();
+  renderPlans();
+  updateStep(1);
+  document.getElementById('birthdate').setAttribute('max', new Date().toISOString().split('T')[0]);
+  /* EN 기본 노출 시 게이트웨이 즉시 동기화 */
+  syncPaymentGateway(currentLang);
+});
+
+</script>
+</body>
+</html>
